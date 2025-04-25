@@ -1,0 +1,15 @@
+.paragraph {
+  font-size: var(--text);
+  font-weight: var(--normal);
+  color: var(--white);
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+
+  &.paragraph--desc {
+    height: 60px;
+    line-height: 1.2;
+    margin: var(--spacing-large) 0;
+  }
+}

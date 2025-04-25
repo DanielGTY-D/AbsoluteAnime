@@ -1,0 +1,33 @@
+.navbar {
+	background-color: var(--background-color);
+	border-radius: var(--border-radius);
+}
+.navbar__list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--spacing);
+	padding: var(--spacing);
+}
+.navbar__item {
+	background-color: var(--button-color);
+	border-radius: var(--border-radius);
+  border: 1px solid var(--button-color);
+	padding: var(--spacing) var(--spacing-large);
+	transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+	&:hover {
+		background-color: var(--button-color-hover);
+		border: var(--secondary-color) 1px solid;
+	}
+}
+.navbar__link {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing);
+	color: var(--white);
+	font-size: var(--subTitle);
+	font-weight: var(--bold);
+  i {
+    color: var(--white);
+  }
+}

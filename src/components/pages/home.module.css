@@ -1,0 +1,23 @@
+.main-content {
+  width: 90%;
+  margin: 0 auto;
+}
+.top-section {}
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xxlarge);
+
+  @media (min-width:  768px) {
+     flex-direction: row;
+     justify-content: space-between;
+  }
+}
+.aside {
+  width: calc(20rem);
+  height: 100%;
+}

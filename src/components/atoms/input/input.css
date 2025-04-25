@@ -1,0 +1,8 @@
+.input {
+  background-color: var(--background-color);
+  color: var(--white);
+  padding: var(--spacing-large) var(--spacing-xlarge);
+  border-radius: var(--border-radius);
+  font-size: var(--subTitle);
+  font-weight: var(--light);
+}
