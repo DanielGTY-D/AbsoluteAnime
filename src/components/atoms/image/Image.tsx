@@ -1,6 +1,6 @@
 import "./image.css";
 
-interface ImageProps {
+export interface ImageProps {
 	Src: string;
 	ClassName: string;
 	Alt: string;

@@ -1,7 +1,7 @@
 import Title from "../../atoms/title/Title";
 import Paragraph from "../../atoms/paragraph/Paragraph";
 import "./card-ditails.css";
-interface CardDitailsProps {
+export interface CardDitailsProps {
 	titleType: string;
 	ClassNameContent: string;
 	ClassNameDitails: string;
@@ -11,7 +11,7 @@ interface CardDitailsProps {
 	ClassNameGeneres: string;
 	title: string;
 	ep: string;
-	generes: string;
+	generes: string ;
 	airing: string;
 	desc: string;
 }

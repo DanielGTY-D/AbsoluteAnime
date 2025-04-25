@@ -1,7 +1,7 @@
 .custom-swiper-hero {
   width: 100%;
   height: 50rem;
-  border-radius: 5rem;
+  border-radius: 2rem;
 
   @media (min-width:  768px) {
      width: 55%;
