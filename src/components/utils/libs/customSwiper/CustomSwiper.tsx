@@ -21,7 +21,7 @@ const CustomSwiper = ({ className, children, ...props }: CustomSwiperProps & { c
       spaceBetween={spacing}
       slidesPerView={slidesPerView}
       breakpoints={{breackpoints}}
-      autoplay={{delay: delay, disableOnInteraction: false}}
+      autoplay={false}
     >
      {children}
     </Swiper>

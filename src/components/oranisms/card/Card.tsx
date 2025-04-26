@@ -12,7 +12,7 @@ interface CardProps {
 		ClassNameGeneres: string;
 		title: string;
 		ep: number;
-		generes: string[];
+		generes: object[];
 		airing: boolean;
 		desc: string;
 	};
@@ -46,7 +46,7 @@ const Card = ({ cardDitails, image }: CardProps) => {
 				title={title}
 				desc={desc}
 				ep={ep ? `${ep} Episodes` : "Unknown"}
-				generes={generes.map((element) => element.name).join(", ")}
+				generes={generes}
 				airing={airing ? "Airing" : "Finished"}
 			/>
 		</>

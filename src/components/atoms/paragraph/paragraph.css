@@ -6,10 +6,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
-
   &.paragraph--desc {
     height: 60px;
     line-height: 1.2;
     margin: var(--spacing-large) 0;
+  }
+  &.paragraph--generes {
+    display: inline;
+    margin-right: var(--spacing);
+    color: rgb(91, 230, 170);
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

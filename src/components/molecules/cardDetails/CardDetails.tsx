@@ -11,7 +11,10 @@ export interface CardDitailsProps {
 	ClassNameGeneres: string;
 	title: string;
 	ep: string;
-	generes: string ;
+	generes: {
+		gener: string;
+		id: number;
+	}[];
 	airing: string;
 	desc: string;
 }
@@ -35,7 +38,11 @@ const CardDitails = ({
 			<Paragraph ClassName={ClassNameDesc} text={desc}/>
 			<div className={ClassNameDitails}>
 				<Paragraph ClassName={ClassNameEp} text={ep}/>
-				<Paragraph ClassName={ClassNameGeneres} text={generes}/>
+				{
+					generes.map( el => (
+						<Paragraph ClassName={ClassNameGeneres} text={el.gener} id={el.id.toString()} key={el.id}/>
+					))
+				}
 				<Paragraph ClassName={ClassNameAiring} text={airing}/>
 			</div>
 		</div>

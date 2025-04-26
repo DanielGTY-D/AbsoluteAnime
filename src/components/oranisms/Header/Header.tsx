@@ -5,7 +5,7 @@ import Input from "../../atoms/input/Input";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-	const [windowSize, setWindowSize] = useState<number | null>();
+	const [windowSize, setWindowSize] = useState<number>(window.innerWidth);
 	useEffect(() => {
 		window.addEventListener("resize", () => {
 			setWindowSize(window.innerWidth);
