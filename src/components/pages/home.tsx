@@ -20,7 +20,7 @@ export default function Home() {
       try {
         const anime = await FetchTopAnime();
         setTopAnime(anime);
-        await delay(600);
+        await delay(700);
         const manga = await FetchTopManga();
         setTopManga(manga);
         await delay(1000);
@@ -39,43 +39,8 @@ export default function Home() {
         <div className={"hero"}>
           <div className={"hero__left-box"}>
             {/* in this parte we go to add an recent epp of anime */}
+
             <Title type="h3" title="Manga" ClassName="title" />
-            <CustomSwiper
-              className="custom-siper-aside"
-              autoplay={{ delay: 3000 }}
-              spacing={10}
-              slidesPerView={1}
-              grid={{ rows: 3 }}
-              breackpoints={{
-                640: {
-                  slidesPerView: 1,
-                  grid: { rows: 3 },
-                  spaceBeteween: 10,
-                },
-              }}
-            >
-              {topMandaData.map((data) => (
-                <SwiperSlide>
-                  <Card
-                    ClassName="card-primary card-small"
-                    image={{
-                      Alt: data.title,
-                      ClassName: "image image--aside",
-                      Src: data.images.webp.large_image_url,
-                    }}
-                    cardDitails={{
-                      ClassNametitle: "title title--small",
-                      title: data.title,
-                      titleType: "h4",
-                      ClassNameContent: "card-data-primary",
-                      ClassNameDitails: "card-ditails-primary",
-                    }}
-                  />
-                </SwiperSlide>
-              ))}
-            </CustomSwiper>
-          </div>
-          <div className="hero__right-box">
             <CustomSwiper
               className="custom-swiper-hero"
               autoplay={{ delay: 3000 }}
@@ -84,12 +49,13 @@ export default function Home() {
               }}
               slidesPerView={1}
               spacing={10}
+
             >
               {topAnimeData.length &&
                 topAnimeData.map((el) => (
-                  <SwiperSlide className="" key={el.mal_id}>
+                  <SwiperSlide className="card-large" key={el.mal_id}>
                     <Card
-                      ClassName="card-primary card--hero-left"
+                      ClassName="card-large"
                       image={{
                         Alt: el.title,
                         ClassName: "image",
@@ -107,9 +73,9 @@ export default function Home() {
                         titleType: "h2",
                         ClassNametitle: "title",
                         ClassNameAiring: "paragraph--airing",
-                        ClassNameContent: "card-data-primary",
+                        ClassNameContent: "card-large__content",
                         ClassNameDesc: "paragraph--desc",
-                        ClassNameDitails: "card-ditails-primary",
+                        ClassNameDitails: "card-larg__ditails",
                         ClassNameGeneres: "paragraph--generes",
                         ClassNameEp: "paragraph--ep",
                       }}
@@ -118,7 +84,6 @@ export default function Home() {
                 ))}
             </CustomSwiper>
           </div>
-        </div>
       </main>
     </>
   );
