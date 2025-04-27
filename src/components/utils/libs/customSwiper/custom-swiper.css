@@ -1,18 +1,6 @@
 .custom-swiper-hero {
   width: 100%;
-  height: 50rem;
-  border-radius: 2rem;
-
-  @media (min-width:  768px) {
-     width: 55%;
-     height: 40rem;
-     margin: 0;
-  }
-  @media (min-width:  1024px) {
-     width: 60%;
-     height: 50rem;
-     margin: 0;
-  }
+  height: 100%;
 }
 .swiper-slide {
   &:hover .image {

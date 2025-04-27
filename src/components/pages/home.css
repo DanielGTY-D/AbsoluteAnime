@@ -1,0 +1,28 @@
+.main-content {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: var(--spacing-large);
+}
+.top-section {
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xlarge);
+  height: 500px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.hero__left-box {
+  width: calc(35% - var(--spacing));
+  height: 100%;
+}
+.hero__right-box {
+  width: calc(65% - 4rem);
+}

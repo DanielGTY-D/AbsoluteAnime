@@ -2,4 +2,8 @@
   font-size: var(--title);
   font-weight: var(--bold);
   color: var(--white);
+  display: block;
+}
+.title--small {
+  font-size: var(--sub-title);
 }

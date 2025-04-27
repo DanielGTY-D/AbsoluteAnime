@@ -1,0 +1,11 @@
+.card-primary {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.card-small {
+  height: 12rem;
+  width: 100%;
+}

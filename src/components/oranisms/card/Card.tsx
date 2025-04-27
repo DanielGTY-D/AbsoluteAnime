@@ -1,56 +1,60 @@
 import Image, { ImageProps } from "../../atoms/image/Image";
-import CardDitails from "../../molecules/cardDetails/CardDetails";
+import "./card.css";
+import CardData from "../../molecules/cardDetails/CardData";
 interface CardProps {
-	image: ImageProps;
-	cardDitails: {
-		titleType: string;
-		ClassNameContent: string;
-		ClassNameDitails: string;
-		ClassNameDesc: string;
-		ClassNameAiring: string;
-		ClassNameEp: string;
-		ClassNameGeneres: string;
-		title: string;
-		ep: number;
-		generes: object[];
-		airing: boolean;
-		desc: string;
-	};
+  ClassName: string;
+  image: ImageProps;
+  cardDitails: {
+    titleType: string;
+    ClassNameContent: string;
+    ClassNametitle: string;
+    ClassNameDitails: string;
+    ClassNameDesc?: string;
+    ClassNameAiring?: string;
+    ClassNameEp?: string;
+    ClassNameGeneres?: string;
+    title: string;
+    ep?: number;
+    generes?: object[];
+    airing?: boolean;
+    desc?: string;
+  };
 }
-const Card = ({ cardDitails, image }: CardProps) => {
-	const {
-		ClassNameAiring,
-		ClassNameContent,
-		ClassNameDesc,
-		ClassNameDitails,
-		ClassNameEp,
-		ClassNameGeneres,
-		airing,
-		desc,
-		ep,
-		generes,
-		title,
-		titleType,
-	} = cardDitails;
-	return (
-		<>
-			<Image ClassName={image.ClassName} Src={image.Src} Alt={image.Alt} />
-			<CardDitails
-				ClassNameDesc={ClassNameDesc}
-				ClassNameAiring={ClassNameAiring}
-				ClassNameEp={ClassNameEp}
-				ClassNameGeneres={ClassNameGeneres}
-				ClassNameContent={ClassNameContent}
-				ClassNameDitails={ClassNameDitails}
-				titleType={titleType}
-				title={title}
-				desc={desc}
-				ep={ep ? `${ep} Episodes` : "Unknown"}
-				generes={generes}
-				airing={airing ? "Airing" : "Finished"}
-			/>
-		</>
-	);
+const Card = ({ ClassName, cardDitails, image }: CardProps) => {
+  const {
+    ClassNameAiring,
+    ClassNameContent,
+    ClassNameDesc,
+    ClassNameDitails,
+    ClassNameEp,
+    ClassNametitle,
+    ClassNameGeneres,
+    airing,
+    desc,
+    ep,
+    generes,
+    title,
+    titleType,
+  } = cardDitails;
+  return (
+    <div className={ClassName}>
+      <Image ClassName={image.ClassName} Src={image.Src} Alt={image.Alt} />
+      <CardData
+        ClassNametitle={ClassNametitle}
+        ClassNameDesc={ClassNameDesc ? ClassNameDesc : ""}
+        ClassNameAiring={ClassNameAiring ? ClassNameDitails : ""}
+        ClassNameEp={ClassNameEp ? ClassNameEp : ""}
+        ClassNameGeneres={ClassNameGeneres ? ClassNameGeneres : ""}
+        ClassNameContent={ClassNameContent}
+        ClassNameDitails={ClassNameDitails}
+        titleType={titleType}
+        title={title}
+        desc={desc ? desc : ""}
+        ep={ep ? `${ep} Episodes` : ""}
+        generes={generes ? generes : []}
+        airing={airing && airing ? "Airing" : "Finished"}
+      />
+    </div>
+  );
 };
-
 export default Card;

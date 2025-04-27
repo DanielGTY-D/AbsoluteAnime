@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { TopAnime, TopManga } from '../services/interfaces/interfaces';
+import { create } from "zustand";
+import { TopAnime, TopManga } from "../services/interfaces/interfaces";
 
 interface AnimeStore {
   topAnime: TopAnime | [];
@@ -13,4 +13,5 @@ export const useAnimeStore = create<AnimeStore>((set) => ({
   topManga: [],
   setTopManga: (data: TopManga) => set(() => ({ topManga: data })),
   setTopAnime: (data: TopAnime) => set(() => ({ topAnime: data })),
-}))
+}));
+
