@@ -1,4 +1,3 @@
-// Import Swiper React components
 import { Swiper } from "swiper/react";
 import "swiper/bundle";
 import "swiper/types";
@@ -16,8 +15,9 @@ const CustomSwiper = ({
 }: CustomSwiperProps & { children?: React.ReactNode }) => {
   const {
     autoplay: { delay },
-    breackpoints,
+    breakpoints = {},
     slidesPerView,
+    rows,
     spacing,
   } = props;
   return (
@@ -26,10 +26,11 @@ const CustomSwiper = ({
       loop={true}
       speed={1400}
       modules={[Autoplay, Navigation, Pagination, Grid]}
+      grid={{ rows: rows, fill: "row" }}
       spaceBetween={spacing}
       slidesPerView={slidesPerView}
-      breakpoints={{ breackpoints }}
-      autoplay={false}
+      breakpoints={breakpoints}
+      autoplay={{ delay: delay, disableOnInteraction: true }}
     >
       {children}
     </Swiper>

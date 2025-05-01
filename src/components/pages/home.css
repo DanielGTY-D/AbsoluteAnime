@@ -12,17 +12,25 @@
   background-color: var(--secondary-color);
   border-radius: var(--border-radius);
   padding: var(--spacing-xlarge);
-  height: 500px;
+  height: auto;
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     flex-direction: row;
     justify-content: space-between;
+    height: 500px;
   }
 }
 .hero__left-box {
-  width: calc(35% - var(--spacing));
+  width: calc(35% - var(--spacing-large));
   height: 100%;
 }
+.hero__title {
+  margin-bottom: var(--spacing);
+  align-text: left;
+}
 .hero__right-box {
-  width: calc(65% - 4rem);
+  width: 100%;
+  @media (min-width: 640px) {
+     width: calc(65% - 4rem);
+  }
 }

@@ -20,11 +20,9 @@ export interface BreackPointsProps {
 
 export interface CustomSwiperProps {
   spacing: number;
-  grid?: {
-    rows: number;
-  };
+  rows?: number;
   slidesPerView: number;
-  breackpoints: BreackPointsProps;
+  breakpoints?: BreackPointsProps;
   autoplay: { delay: number };
   className?: string;
 }
