@@ -7,3 +7,8 @@
 .title--small {
   font-size: var(--sub-title);
 }
+.title--swiper {
+  font-size: var(--title);
+  font-weight: var(--bold);
+  margin-bottom: var(--spacing);
+}

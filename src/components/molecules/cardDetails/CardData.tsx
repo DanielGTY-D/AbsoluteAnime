@@ -36,8 +36,6 @@ const CardData = ({
   titleType,
   desc,
 }: CardDitailsProps) => {
-  console.log(ClassNametitle);
-
   return (
     <div className={ClassNameContent}>
       <Title type={titleType} title={title} ClassName={ClassNametitle} />

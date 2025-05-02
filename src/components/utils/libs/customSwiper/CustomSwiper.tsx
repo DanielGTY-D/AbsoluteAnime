@@ -19,6 +19,7 @@ const CustomSwiper = ({
     breackpoints,
     slidesPerView,
     spacing,
+    rows,
   } = props;
   return (
     <Swiper
@@ -29,7 +30,8 @@ const CustomSwiper = ({
       spaceBetween={spacing}
       slidesPerView={slidesPerView}
       breakpoints={{ breackpoints }}
-      autoplay={false}
+      grid={{rows}}
+      autoplay={{delay: delay, disableOnInteraction: false}}
     >
       {children}
     </Swiper>
