@@ -3,11 +3,11 @@ import { TopAnimeDataSchema } from './schemas/topAnime.schema';
 import { TopAnime } from '../services/interfaces/interfaces';
 import baseAPI from '../services/axios/axios';
 
-const FetchTopAnime = async () : Promise<TopAnime> => {
+const FetchTopAnime = async (): Promise<TopAnime> => {
   try {
     const response = await baseAPI.get("/top/anime");
     const result = TopAnimeDataSchema.safeParse(response.data.data);
-    if(result.success) {
+    if (result.success) {
       return result.data;
     }
     throw new Error("Invalid data format");

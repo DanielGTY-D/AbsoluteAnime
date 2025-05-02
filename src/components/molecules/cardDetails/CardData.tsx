@@ -13,11 +13,11 @@ export interface CardDitailsProps {
   ClassNametitle: string;
   ep: string;
   generes:
-    | {
-        gener: string;
-        id: number;
-      }[]
-    | [];
+  | {
+    gener: string;
+    id: number;
+  }[]
+  | [];
   airing: string;
   desc: string;
 }
@@ -36,6 +36,10 @@ const CardData = ({
   titleType,
   desc,
 }: CardDitailsProps) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8bfe2ef7bbe10203b8c48c49e0de98ceef881024
   return (
     <div className={ClassNameContent}>
       <Title type={titleType} title={title} ClassName={ClassNametitle} />

@@ -22,7 +22,7 @@ export interface CustomSwiperProps {
   spacing: number;
   rows?: number;
   slidesPerView: number;
-  breackpoints: BreackPointsProps;
+  breakpoints?: BreackPointsProps;
   autoplay: { delay: number };
   className?: string;
 }
