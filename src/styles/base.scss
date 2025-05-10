@@ -1,0 +1,34 @@
+@use "variables.scss" as v;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: v.$text;
+  font-family: v.$primary-font;
+  background-color: v.$background-color;
+}
+ul {
+  list-style: none;
+  margin: 0;
+}
+h1 {
+  font-size: v.$title;
+  font-weight: v.$bold;
+  font-family: v.$secondary-font;
+}
+h2,
+h3 {
+  font-size: v.$subtitle;
+  font-weight: v.$bold;
+  font-family: v.$secondary-font;
+}
+a {
+  text-decoration: none;
+  color: v.$text-color;
+}

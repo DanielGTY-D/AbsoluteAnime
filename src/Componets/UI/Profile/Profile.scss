@@ -1,0 +1,12 @@
+@use "../../../styles/variables.scss" as v;
+
+.profile {
+  padding: 1rem;
+  display: flex;
+  border-radius: 1rem;
+  background-color: v.$glass-background;
+  &__icon {
+    color: v.$white;
+    font-size: 2rem;
+  }
+}

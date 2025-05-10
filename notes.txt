@@ -1,0 +1,127 @@
+Create a desgin and description for anime page, what i need to crear for my portfolio.
+
+First, I need to create a design for an anime page that showcases various anime series and movies. The design should be visually appealing and user-friendly, allowing visitors to easily navigate through the content.
+For example, mi ideas is it have a lateral menu following the modern trend of deveopment, with a dark background and light text. The menu should include categories such as "Popular Anime," "Upcoming Releases," "Genres," and "Top Rated." * Each category should have a dropdown menu for easy access to subcategories, last parte could be or not.
+
+also have a page for add you'r favorite anime for watch later, and a search bar at the top of the page for users to quickly find specific titles. The search bar should be easily accessible and visually integrated into the overall design.
+the navbar if this still on the user page, only could search anime of the you added to your favorites.
+
+-- Signup and login page, not have a lateral menu. // take care of this, the design should be simple and clean, with a focus on usability. The signup form should include fields for username, email, and password, while the login form should have fields for username/email and password. Both forms should have clear call-to-action buttons.
+
+colors: how i say previously, want a dark background with light text. The color scheme should be consistent throughout the page, using a combination.
+
+colors: 
+--Dark background (e.g., #121212)
+--accent-color: (e.g., #FF4081) example: highlighted, text or buttons
+--accent-color-hover: (e.g., #FF80AB) example: highlighted, text or buttons
+--text-color: (e.g., #FFFFFF) example: text color
+----text-color-secondary: (e.g., #B0BEC5) example: secondary text color
+
+ima put a glass efect on the search bar and buttons, using a semi-transparent background with a slight blur effect to create a modern look.
+
+--glass-background: (e.g., rgba(255, 255, 255, 0.1))
+
+fonts: 
+i need a clearly font for the text, with a modern sans-serif typeface. The font size should be large enough to ensure readability, with appropriate line spacing and letter spacing for a clean look.
+
+aply the primary-font on the global pages, and then it will be change if is necesary 
+
+--primary-font: (e.g., 'Roboto', sans-serif);
+--title-font: (e.g., 'Poppins', sans-serif);
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap");
+
+
+--what i want is a page what other see simple and atractive, it have a lateral menu what still in the layout component, and a main content area that displays the anime series and movies in a grid format. Each item should have a thumbnail image, title, and rating. When a user hovers over an item, a brief description should appear along with a "Watch Now" button.
+
+-- For the login and signup pages, i use a useForm hook to manage form state and validation. The forms should be responsive, adapting to different screen sizes and orientations. I also want to include error messages for invalid input, such as incorrect email format or password requirements.
+
+--each card still on swiper for more interaction and to make it more dynamic.
+    to make this i use a swiper js library, which allows for smooth transitions and easy navigation between items. The swiper should be responsive, adapting to different screen sizes and orientations.
+
+-- Menu: example can be moded
+    - Popular Anime // so here i put what is the most watched anime
+    - Genres // i use a geners what the api.jk give me
+        - Action
+        - Adventure
+        - Comedy
+        - Drama
+        - Fantasy
+        - Horror
+        - Romance
+        - Sci-Fi
+    - Top Rated // in the api i have a top, what is the most popular anime
+    - Top manga
+-- on the top part of the page or the first page, it will have a long swiper whit the some of most popular anime, with a title and a button to watch now. The swiper should be responsive, adapting to different screen sizes and orientations.
+
+below of theme, it will have a short sections for some genres
+    - Action
+    - Adventure
+    - Comedy
+    - Drama
+    - Fantasy
+    - Horror
+    - Romance
+    - Sci-Fi
+
+and then, also below the long card on the left side i will have a aside for Top Manga.
+
+
+-- Files estructure
+  AbsoluteAnime # main path
+  - src/
+    - assets/
+      - images/
+        fonts/
+    - components/ # Reusable components
+      - UI/ # Ui elements like button, Input, etc.
+      - common/ # Sections like header, Footer, 
+
+    - store/ # usign zustand
+      - authStore.js # Auth store
+      - animeStore.js # Anime store
+      - userStore.js # User store
+      - MangaStore.js # Manga store
+
+    - hooks/ # Custom hooks (example: useForm, logic);
+
+    - layout/ # Layout components (example: MainLayout, AuthLayout, about);
+
+    - schemas/
+      - shared/ #Shared schemas
+
+    - interfaces/ #Global intefaces example: Anime, User, etc.
+      - shared/ # Shared interfaces
+
+    - styles/
+      - base.scss # Resets, variables, mixins
+      - main.scss # is a entry point for global styles
+
+    -utils/ #Helper functions, constants, etc.
+
+    app.jsx #main entry point for the app
+    main.jsx  #ReactDOM render
+    index.css or index.sccs # Can import main.scss here
+
+-.gitignore
+package.json
+README.md
+vite.config.js
+
+
+scss setup usig vite
+
+npm install -D sass 
+
+- create a manin.scs in src/styles and import it in index.jsx
+- inside main.scss, import base.scss and any other scss files you need.
+
+- recomende write sccs modules for styles like import './Card.module.scss'.
+
+so i don't know how i the main layout, about recent episodes and the genres, then i searh layouts on pinterest for find some layouts, and i find one that i like, so i will use this for the main layout, and then i will change the colors and some things to make it more personal.
+
+
+
+
+
+
