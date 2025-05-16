@@ -3,7 +3,7 @@ import "swiper/swiper-bundle.css";
 const Section = () => {
   return (
     <Swiper>
-      <SwiperSlide>Hola desde section</SwiperSlide>
+      <SwiperSlide></SwiperSlide>
     </Swiper>
   );
 };

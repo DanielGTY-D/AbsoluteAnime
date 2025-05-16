@@ -1,11 +1,12 @@
 import instance from "../axios/index.ts";
-import GenreSchema from "../schemas/shared/Genres.schema.ts";
+import { GenresSchema } from "../schemas/shared/Genres.schema.ts";
 import { TopAnimeSchemaArray } from "../schemas/TopAnime.schema";
 import useAnimeStore from "../store/animeStore";
 
 const useAnime = () => {
   const setTopAnimeList = useAnimeStore((state) => state.setAnimeList);
   const setGenresList = useAnimeStore((state) => state.setGenresList);
+
   const fetchTopAnime = async () => {
     try {
       const response = await instance.get("/top/anime");
@@ -24,8 +25,7 @@ const useAnime = () => {
   const fetchAnimeGenres = async () => {
     try {
       const response = await instance.get("/genres/anime");
-      const result = GenreSchema.safeParse(response.data.data);
-
+      const result = GenresSchema.safeParse(response.data.data);
       if (result.success) {
         setGenresList(result.data);
       }

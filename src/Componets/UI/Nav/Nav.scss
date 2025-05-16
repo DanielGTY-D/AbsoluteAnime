@@ -1,16 +1,31 @@
 @use "../../../styles/variables" as v;
 
 .nav {
+  height: 50rem;
   &__list {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
 
+  &__list--genre {
+    margin: 1rem 0 0 1.5rem;
+    overflow-y: scroll;
+    height: 20rem;
+  }
+
   &__item {
     &:hover {
       & .nav__link::after {
         transform: scaleX(1);
+      }
+    }
+  }
+
+  &__item--genre {
+    &:hover {
+      & .nav__link::after {
+        transform: scaleX(0);
       }
     }
   }
@@ -34,8 +49,24 @@
     }
   }
 
+  &__link {
+    &::after {
+      content: "";
+      border: none;
+    }
+  }
+
   &__icon {
     margin-left: 1rem;
     font-size: 2rem;
+  }
+
+  &__details {
+  }
+
+  &__summary {
+    color: v.$accent-color;
+    font-weight: v.$bold;
+    font-size: 1.6rem;
   }
 }

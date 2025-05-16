@@ -2,15 +2,9 @@ import { useEffect } from "react";
 import Header from "../Componets/common/Header/Header.tsx";
 import Section from "../Componets/common/Section/Section.tsx";
 import useAnime from "../hook/useAnime.ts";
+import { lazyFetch } from "../utils/index.ts";
 const Home = () => {
   const { fetchAnimeGenres } = useAnime();
-  const lazyFetch = async (fn: () => void) => {
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(fn());
-      }, 1000);
-    });
-  };
 
   useEffect(() => {
     lazyFetch(fetchAnimeGenres);

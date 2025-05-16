@@ -1,5 +1,5 @@
 import { z } from "zod";
-import GenreSchema from "./shared/Genres.schema";
+import { GenresSchema } from "./shared/Genres.schema";
 import ImageSchema from "./shared/Image.schema";
 
 const TopAnimeSchema = z.object({
@@ -10,7 +10,7 @@ const TopAnimeSchema = z.object({
   title_japanese: z.string(),
   episodes: z.number(),
   synopsis: z.string(),
-  genres: GenreSchema.array(),
+  genres: GenresSchema,
   images: ImageSchema,
 });
 
