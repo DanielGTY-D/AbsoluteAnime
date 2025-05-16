@@ -10,13 +10,11 @@ const Home = () => {
     lazyFetch(fetchAnimeGenres);
   }, []);
   return (
-    <div>
+    <>
       <Header />
 
-      <main>
-        <Section />
-      </main>
-    </div>
+      <main>{/* <Section name={"Capitulos Recientes"} /> */}</main>
+    </>
   );
 };
 

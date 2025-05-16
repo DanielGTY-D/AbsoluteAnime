@@ -1,5 +1,5 @@
 import "remixicon/fonts/remixicon.css";
-import "./Profile.scss";
+import "./_Profile.scss";
 const Profile = () => {
   return (
     <div className="profile">

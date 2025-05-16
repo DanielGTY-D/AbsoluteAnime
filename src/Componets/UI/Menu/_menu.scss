@@ -1,0 +1,147 @@
+@use "../../../styles/_variables.scss" as *;
+@use "../../../styles/_mixins.scss" as *;
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: $shade-color;
+
+  &__search {
+    background-color: $glass-background;
+    padding: 1rem 0;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  &__search-icon {
+    color: $accent-color;
+    font-size: 2rem;
+  }
+  &__search-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: $white;
+    font-size: $text;
+    display: none;
+
+    @include tablet {
+      display: block;
+    }
+
+    &::placeholder {
+      color: $text-color-opac;
+      font-size: $text;
+    }
+  }
+  &__extras {
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    width: 100%;
+  }
+  &__auth-container {
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  &__auth-text {
+    font-weight: $bold;
+  }
+  &__auth {
+    color: $accent-color;
+    font-size: 2.4rem;
+  }
+}
+.user {
+  background-color: $glass-background;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+
+  @include tablet {
+    width: auto;
+  }
+  &__icon {
+    color: $accent-color;
+    font-size: 2.4rem;
+  }
+  &__info {
+    color: $white;
+    display: none;
+
+    @include tablet {
+      display: block;
+    }
+  }
+  &__name {
+    text-transform: capitalize;
+    font-weight: $bold;
+  }
+  &__email {
+    font-weight: $light;
+  }
+}
+.nav {
+  padding: 2rem 0.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @include tablet {
+      align-items: flex-start;
+    }
+  }
+  &__item {
+    @include tablet {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+  }
+  &__link {
+    color: $white;
+    display: none;
+
+    @include tablet {
+      display: block;
+    }
+  }
+  &__icon {
+    color: $accent-color;
+    font-size: 2.6rem;
+  }
+}
+
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  gap: 1rem;
+
+  &__text {
+    color: $white;
+  }
+  &__icon {
+    color: $accent-color;
+    font-size: 2.4rem;
+  }
+}
