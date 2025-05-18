@@ -1,48 +1,76 @@
 import "./_menu.scss";
-import Profile from "../Profile/Profile";
-
+import "remixicon/fonts/remixicon.css";
+import { NavLink } from "react-router-dom";
 const Menu = () => {
   return (
     <div className="menu">
-      <div className="user">
+      <NavLink
+        to={"/profile"}
+        className={({ isActive }) => (isActive ? "user user--active" : "user")}
+      >
         <i className="ri-user-3-fill user__icon"></i>
         <div className="user__info">
           <p className="user__name">Jhon Doe</p>
           <p className="user__email">Coreo@correo.</p>
         </div>
-      </div>
+      </NavLink>
 
-      <div className="menu__search">
+      <form className="menu__search">
         <i className="ri-search-line menu__search-icon"></i>
         <input
           type="search"
           placeholder="Search..."
           className="menu__search-input"
         />
-      </div>
+      </form>
 
       <nav className="nav nav--mobile">
         <ul className="nav__list">
-          <li className="nav__item">
-            <a className="nav__link">Home</a>
+          <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+              isActive ? "nav__item nav__item--active" : "nav__item"
+            }
+          >
+            <p className="nav__link">Home</p>
             <i className="ri-home-5-line nav__icon"></i>
-          </li>
-          <li className="nav__item">
-            <a className="nav__link">Capitulos Recientes</a>
+          </NavLink>
+          <NavLink
+            to={"/capitulos-recientes"}
+            className={({ isActive }) =>
+              isActive ? "nav__item nav__item--active" : "nav__item"
+            }
+          >
+            <p className="nav__link">Capitulos Recientes</p>
             <i className="ri-book-open-line nav__icon"></i>
-          </li>
-          <li className="nav__item">
-            <a className="nav__link">Anime Destacado</a>
-            <i className="ri-star-line nav__icon"></i>
-          </li>
-          <li className="nav__item">
-            <a className="nav__link">Generos</a>
-            <i className="ri-list-check-2 nav__icon"></i>
-          </li>
-          <li className="nav__item">
-            <a className="nav__link">Manga destacado</a>
+          </NavLink>
+          <NavLink
+            to={"/anime-destacado"}
+            className={({ isActive }) =>
+              isActive ? "nav__item nav__item--active" : "nav__item"
+            }
+          >
+            <p className="nav__link">Anime destacado</p>
+            <i className="ri-book-open-line nav__icon"></i>
+          </NavLink>
+          <NavLink
+            to={"/manga-destacado"}
+            className={({ isActive }) =>
+              isActive ? "nav__item nav__item--active" : "nav__item"
+            }
+          >
+            <p className="nav__link">Manga destacado</p>
             <i className="ri-book-2-line nav__icon"></i>
-          </li>
+          </NavLink>
+          <NavLink
+            to={"/generos"}
+            className={({ isActive }) =>
+              isActive ? "nav__item nav__item--active" : "nav__item"
+            }
+          >
+            <p className="nav__link">Generos</p>
+            <i className="ri-book-2-line nav__icon"></i>
+          </NavLink>
         </ul>
       </nav>
 

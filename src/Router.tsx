@@ -9,8 +9,11 @@ function AppRouter() {
       <Routes>
         <Route element={<LayoutInicio />}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<div>Login</div>} />
-          <Route path="/profile" element={<div>Profile</div>} />
+          <Route path="/capitulos-recientes" element={<div>Login</div>} />
+          <Route path="/generos" element={<div>Profile</div>} />
+          <Route path="/generos/" element={<div>generos</div>} />
+          <Route path="anime-destacado" element={<div>anime-destacado</div>} />
+          <Route path="manga-destacado" element={<div>manga-destacado</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

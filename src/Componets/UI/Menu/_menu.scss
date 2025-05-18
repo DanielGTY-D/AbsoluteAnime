@@ -10,7 +10,7 @@
 
   &__search {
     background-color: $glass-background;
-    padding: 1rem 0;
+    padding: 1rem;
     border-radius: 1rem;
     display: flex;
     align-items: center;
@@ -29,6 +29,7 @@
     color: $white;
     font-size: $text;
     display: none;
+    width: 100%;
 
     @include tablet {
       display: block;
@@ -40,7 +41,7 @@
     }
   }
   &__extras {
-    padding: 2rem 1rem;
+    padding: 2rem 0;
     border-radius: 1rem;
     width: 100%;
   }
@@ -51,6 +52,7 @@
     justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 2rem;
+    cursor: pointer;
   }
   &__auth-text {
     font-weight: $bold;
@@ -71,7 +73,8 @@
   width: 100%;
 
   @include tablet {
-    width: auto;
+    width: 100%;
+    justify-content: flex-start;
   }
   &__icon {
     color: $accent-color;
@@ -94,26 +97,44 @@
   }
 }
 .nav {
-  padding: 2rem 0.5rem;
+  padding: 2rem 0;
   border-radius: 1rem;
   width: 100%;
   &__list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 
     @include tablet {
       align-items: flex-start;
     }
   }
   &__item {
+    transition: all 0.3s ease-in-out;
     @include tablet {
       display: flex;
       align-items: center;
       flex-direction: row-reverse;
       justify-content: flex-end;
       gap: 1rem;
+      padding: 0.3rem 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--active {
+      background-color: $glass-background;
+      padding: 1rem;
+      border-radius: 1rem;
+      @include tablet {
+        border-radius: 0 1rem 0 1rem;
+        background-image: linear-gradient(
+          to left,
+          darken($accent-color, 15) 5%,
+          transparent 100%
+        );
+        background-color: transparent;
+      }
     }
   }
   &__link {
@@ -136,6 +157,7 @@
   justify-content: flex-end;
   flex-direction: row-reverse;
   gap: 1rem;
+  cursor: pointer;
 
   &__text {
     color: $white;
