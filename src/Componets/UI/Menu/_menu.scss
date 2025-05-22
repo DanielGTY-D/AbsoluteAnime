@@ -1,169 +1,293 @@
 @use "../../../styles/_variables.scss" as *;
 @use "../../../styles/_mixins.scss" as *;
 .menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rem 1rem;
-  background-color: $shade-color;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 3rem 1rem;
+	background-color: $shade-color;
+	position: fixed;
+	z-index: 101;
+	width: 100%;
+	height: 100%;
+	transform: translateX(-100%);
+	transition: all 0.5s ease-in-out;
 
-  &__search {
-    background-color: $glass-background;
-    padding: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-  }
-  &__search-icon {
-    color: $accent-color;
-    font-size: 2rem;
-  }
-  &__search-input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: $white;
-    font-size: $text;
-    display: none;
-    width: 100%;
+	&.menu--open {
+		transform: translateX(0);
+	}
 
-    @include tablet {
-      display: block;
-    }
+	@include telefono {
+		position: static;
+		flex: 0 0 84px;
+		transform: translateX(0%);
+		transition: all 0.5s ease-in-out;
 
-    &::placeholder {
-      color: $text-color-opac;
-      font-size: $text;
-    }
-  }
-  &__extras {
-    padding: 2rem 0;
-    border-radius: 1rem;
-    width: 100%;
-  }
-  &__auth-container {
-    color: $white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    cursor: pointer;
-  }
-  &__auth-text {
-    font-weight: $bold;
-  }
-  &__auth {
-    color: $accent-color;
-    font-size: 2.4rem;
-  }
+		// &:hover {
+		// 	position: relative;
+		// 	flex: 0 0 200px;
+		// }
+
+		// &.sideBarActive {
+		// 	.user__info {
+		// 		display: block;
+		// 		opacity: 1;
+		// 	}
+		// 	.menu__search-input {
+		// 		display: block;
+		// 	}
+		// 	.nav__link {
+		// 		display: flex;
+		// 	}
+		// 	.nav__item {
+		// 		justify-content: flex-end;
+		// 	}
+		// 	.menu__auth-container {
+		// 		justify-content: flex-start;
+		// 	}
+		// 	.menu__auth-text {
+		// 		display: block;
+		// 	}
+		// 	.theme {
+		// 		justify-content: flex-end;
+		// 	}
+		// 	.theme__text {
+		// 		display: block;
+		// 	}
+		// }
+	}
+
+	@include desktop {
+		position: static;
+		flex: 0 0 250px;
+		transform: translateX(0);
+
+		&:hover {
+			position: static;
+			flex: 0 0 250px;
+		}
+	}
+
+	&__search {
+		background-color: $glass-background;
+		padding: 1rem;
+		border-radius: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		width: 100%;
+	}
+	&__search-icon {
+		color: $accent-color;
+		font-size: 2rem;
+	}
+	&__search-input {
+		background-color: transparent;
+		border: none;
+		outline: none;
+		color: $white;
+		font-size: $text;
+		width: 100%;
+
+		@include telefono {
+			display: none;
+		}
+
+		@include desktop {
+			display: block;
+		}
+
+		&::placeholder {
+			color: $text-color-opac;
+			font-size: $text;
+		}
+	}
+	&__extras {
+		padding: 2rem 1rem;
+		border-radius: 1rem;
+		width: 100%;
+		background-color: $glass-background;
+	}
+	&__auth-container {
+		color: $white;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1rem;
+		margin-bottom: 2rem;
+		cursor: pointer;
+
+		@include telefono {
+			justify-content: center;
+		}
+
+		@include desktop {
+			justify-content: flex-start;
+		}
+	}
+	&__auth-text {
+		font-weight: $bold;
+
+		@include telefono {
+			display: none;
+		}
+
+		@include desktop {
+			display: block;
+		}
+	}
+	&__auth {
+		color: $accent-color;
+		font-size: 2.4rem;
+	}
+
+	&__close {
+		color: $accent-color;
+		font-size: 1.8rem;
+		margin-top: 2rem;
+		font-weight: $bold;
+		cursor: pointer;
+		
+		@include telefono {
+			display: none;
+		}
+	}
 }
 .user {
-  background-color: $glass-background;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
+	background-color: $glass-background;
+	padding: 1rem 2rem;
+	border-radius: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+	width: 100%;
 
-  @include tablet {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  &__icon {
-    color: $accent-color;
-    font-size: 2.4rem;
-  }
-  &__info {
-    color: $white;
-    display: none;
+	@include telefono {
+		width: 100%;
+		justify-content: flex-start;
+	}
+	&__icon {
+		color: $accent-color;
+		font-size: 2.4rem;
+	}
+	&__info {
+		color: $white;
 
-    @include tablet {
-      display: block;
-    }
-  }
-  &__name {
-    text-transform: capitalize;
-    font-weight: $bold;
-  }
-  &__email {
-    font-weight: $light;
-  }
+		@include telefono {
+			display: none;
+		}
+
+		@include desktop {
+			display: block;
+		}
+	}
+	&__name {
+		text-transform: capitalize;
+		font-weight: $bold;
+	}
+	&__email {
+		font-weight: $light;
+	}
 }
 .nav {
-  padding: 2rem 0;
-  border-radius: 1rem;
-  width: 100%;
-  &__list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+	padding: 2rem 0;
+	border-radius: 1rem;
+	width: 100%;
+	&__list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
 
-    @include tablet {
-      align-items: flex-start;
-    }
-  }
-  &__item {
-    transition: all 0.3s ease-in-out;
-    @include tablet {
-      display: flex;
-      align-items: center;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      gap: 1rem;
-      padding: 0.3rem 1rem;
-      transition: all 0.3s ease-in-out;
-    }
+		@include tablet {
+			align-items: flex-start;
+		}
+	}
+	&__item {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 1rem;
+		transition: all 0.3s ease-in-out;
+		width: 100%;
 
-    &--active {
-      background-color: $glass-background;
-      padding: 1rem;
-      border-radius: 1rem;
-      @include tablet {
-        border-radius: 0 1rem 0 1rem;
-        background-image: linear-gradient(
-          to left,
-          darken($accent-color, 15) 5%,
-          transparent 100%
-        );
-        background-color: transparent;
-      }
-    }
-  }
-  &__link {
-    color: $white;
-    display: none;
+		@include telefono {
+			justify-content: center;
+			padding: 0.3rem 1rem;
+			transition: all 0.3s ease-in-out;
+			width: 100%;
+		}
 
-    @include tablet {
-      display: block;
-    }
-  }
-  &__icon {
-    color: $accent-color;
-    font-size: 2.6rem;
-  }
+		@include desktop {
+			justify-content: flex-end;
+			gap: 1rem;
+		}
+
+		&--active {
+			background-color: $glass-background;
+			@include telefono {
+				border-radius: 0 1rem 0 1rem;
+				padding: 0.6rem 1rem;
+				background-image: linear-gradient(
+					to left,
+					darken($accent-color, 15) 5%,
+					transparent 100%
+				);
+				background-color: transparent;
+			}
+		}
+	}
+	&__link {
+		color: $white;
+
+		@include telefono {
+			display: none;
+		}
+
+		@include desktop {
+			display: block;
+		}
+	}
+	&__icon {
+		color: $accent-color;
+		font-size: 2.6rem;
+	}
 }
 
 .theme {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
-  gap: 1rem;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+	gap: 1rem;
+	cursor: pointer;
 
-  &__text {
-    color: $white;
-  }
-  &__icon {
-    color: $accent-color;
-    font-size: 2.4rem;
-  }
+	@include telefono {
+		justify-content: center;
+	}
+	@include desktop {
+		justify-content: flex-end;
+	}
+
+	&__text {
+		color: $white;
+
+		@include telefono {
+			display: none;
+		}
+
+		@include desktop {
+			display: block;
+		}
+	}
+	&__icon {
+		color: $accent-color;
+		font-size: 2.4rem;
+	}
 }

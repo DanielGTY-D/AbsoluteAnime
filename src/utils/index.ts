@@ -1,7 +1,1 @@
-export const lazyFetch = async (fn: () => void) => {
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(fn());
-    }, 1500);
-  });
-};
+export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms)); 

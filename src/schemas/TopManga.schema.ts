@@ -1,6 +1,6 @@
 import { z } from "zod";
 import ImageSchema from "./shared/Image.schema";
-import GenreSchema from "./shared/Genres.schema";
+import {GenreSchema} from "./shared/Genres.schema";
 
 const TopMangaSchema = z.object({
   mal_id: z.number(),

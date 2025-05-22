@@ -1,12 +1,13 @@
 import instance from "../axios/index.ts";
+import { RecentEpisodesSchema } from "../schemas/recentEpisodes.schema.ts";
 import { GenresSchema } from "../schemas/shared/Genres.schema.ts";
 import { TopAnimeSchemaArray } from "../schemas/TopAnime.schema";
-import useAnimeStore from "../store/animeStore";
+import { useAppStore } from "../store/useAppStore.ts";
 
 const useAnime = () => {
-  const setTopAnimeList = useAnimeStore((state) => state.setAnimeList);
-  const setGenresList = useAnimeStore((state) => state.setGenresList);
-
+  const setTopAnimeList = useAppStore((state) => state.setAnimeList);
+  const setGenresList = useAppStore((state) => state.setGenresList);
+  const setRecentEpisodes = useAppStore( state => state.setRecentEpisodesList);
   const fetchTopAnime = async () => {
     try {
       const response = await instance.get("/top/anime");
@@ -34,9 +35,22 @@ const useAnime = () => {
     }
   };
 
+  const fetchRecentEpisodes = async () => {
+    try {
+      const response = await instance.get("/watch/episodes");
+      const result = RecentEpisodesSchema.safeParse(response.data.data);
+      if(result.success) {
+        setRecentEpisodes(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     fetchTopAnime,
     fetchAnimeGenres,
+    fetchRecentEpisodes,
   };
 };
 
