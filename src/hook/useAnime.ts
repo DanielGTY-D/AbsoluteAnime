@@ -7,7 +7,7 @@ import { useAppStore } from "../store/useAppStore.ts";
 const useAnime = () => {
   const setTopAnimeList = useAppStore((state) => state.setAnimeList);
   const setGenresList = useAppStore((state) => state.setGenresList);
-  const setRecentEpisodes = useAppStore( state => state.setRecentEpisodesList);
+  const setRecentEpisodes = useAppStore((state) => state.setRecentEpisodesList);
   const fetchTopAnime = async () => {
     try {
       const response = await instance.get("/top/anime");
@@ -39,13 +39,13 @@ const useAnime = () => {
     try {
       const response = await instance.get("/watch/episodes");
       const result = RecentEpisodesSchema.safeParse(response.data.data);
-      if(result.success) {
+      if (result.success) {
         setRecentEpisodes(result.data);
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return {
     fetchTopAnime,
