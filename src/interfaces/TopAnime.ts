@@ -8,7 +8,7 @@ import {
   TopMangaSchema,
 } from "../schemas/TopManga.schema";
 
-export type ITopAnime = z.infer<typeof TopAnimeSchema>;
-export type ItopAnimeArray = z.infer<typeof TopAnimeSchemaArray>;
-export type ITopManga = z.infer<typeof TopMangaSchema>;
-export type ItopMangaArray = z.infer<typeof TopMangaSchemaArray>;
+export type TopAnime = z.infer<typeof TopAnimeSchema>;
+export type topAnimeArray = z.infer<typeof TopAnimeSchemaArray>;
+export type TopManga = z.infer<typeof TopMangaSchema>;
+export type topMangaArray = z.infer<typeof TopMangaSchemaArray>;

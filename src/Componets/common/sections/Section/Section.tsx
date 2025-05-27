@@ -2,10 +2,11 @@ import { Autoplay, Grid, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./_Section.scss";
-import { RecentEpisodes } from "../../../interfaces/recentEpisodes";
-import Card from "../../UI/Card/Card";
-import LoaderSection from "../../UI/Loader/LoaderSection/LoaderSection";
-import DropDownMenu from "../../UI/DropDownMenu/DropDownMenu";
+import { RecentEpisodes } from "../../../../interfaces/recentEpisodes";
+import Card from "../../../UI/Cards/Card/Card";
+import LoaderSection from "../../../UI/Loader/LoaderSection/LoaderSection";
+import DropDownMenu from "../../../UI/DropDownMenu/DropDownMenu";
+
 
 interface SectionProps {
   sectionName: string;
@@ -15,11 +16,13 @@ interface SectionProps {
 
 const Section = ({
   sectionName,
-  recentEpisodesList,
+  recentEpisodesList = [],
   options,
 }: SectionProps) => {
+  
+
   return (
-    <section className="section">
+    <section className="section" >
       <div className="section__header">
         <h2 className="section__title">{sectionName}</h2>
 
@@ -47,14 +50,15 @@ const Section = ({
               prevEl: ".section__swiper-prev",
             }}
           >
-            {recentEpisodesList.map((episode) => (
+            { recentEpisodesList.map((episode) => (
               <SwiperSlide
                 className="section__swiper-item"
                 key={episode.entry.mal_id}
               >
                 <Card data={episode} />
               </SwiperSlide>
-            ))}
+            ))
+            }
           </Swiper>
           <button className="section__swiper-prev">
             <svg

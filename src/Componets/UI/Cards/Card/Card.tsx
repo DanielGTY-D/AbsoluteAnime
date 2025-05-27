@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { RecentEpisode } from "../../../interfaces/recentEpisodes";
+import { RecentEpisode } from "../../../../interfaces/recentEpisodes";
 import "./_Card.scss";
+
 
 interface CardProps {
   data: RecentEpisode;
@@ -26,6 +27,7 @@ const Card = ({ data }: CardProps) => {
       </div>
 
       <div className="info-box">
+        <p>Recent episodes</p>
         {data.episodes.map((episodesData) => (
           <Link
             to={`/anime?animeId=${data.entry.mal_id}`}

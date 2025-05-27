@@ -2,6 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import "./_DropDownMenu.scss";
 import useAnime from "../../../hook/useAnime";
 import { useAppStore } from "../../../store/useAppStore";
+import { Link } from "react-router-dom";
 function DropDownMenu() {
   const { fetchAnimeGenres } = useAnime();
   const genresList = useAppStore((state) => state.genresList);
@@ -19,7 +20,7 @@ function DropDownMenu() {
           <>
             {genresList.map((genre) => (
               <MenuItem key={genre.mal_id}>
-                <a>{genre.name}</a>
+                <Link to={`/anime-list?genreId=${genre.mal_id}`} className="menu__link">{genre.name}</Link>
               </MenuItem>
             ))}
           </>

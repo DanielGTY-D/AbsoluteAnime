@@ -6,11 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../store/useAppStore.ts";
 import Loader from "../../UI/Loader/LoaderHeader/LoaderHeader.tsx";
 const Header = () => {
+  const navigate = useNavigate();
   const topAnimelist = useAppStore((state) => state.topAnimeList);
   const setMobileMenu = useAppStore((state) => state.setMobileMenu);
 
-  const handleNavigate = (e: React.MouseEvent<HTMLElement>) => {
-    if ((e.target as Element)?.closest("a")) return;
+  const handleNavigate = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    const target = e.target as Element;
+    const isInsideLink = target.closest("a, button");
+    
+    if(isInsideLink) return;
+
+    navigate(`/anime?animeId=${id}`)
   };
 
   return (
@@ -55,7 +61,7 @@ const Header = () => {
           >
             {topAnimelist.map((anime) => (
               <SwiperSlide key={anime.mal_id} className="header__swiper-item">
-                <article className="hero" onClick={handleNavigate}>
+                <article className="hero" onClick={(e) => handleNavigate(e, anime.mal_id)}>
                   <div className="hero__image-container">
                     <img
                       src={anime.images.webp.large_image_url}

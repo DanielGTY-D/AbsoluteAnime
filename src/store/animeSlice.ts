@@ -1,26 +1,26 @@
-import { ItopAnimeArray } from "../interfaces/TopAnime";
+import { topAnimeArray } from "../interfaces/TopAnime";
 import { RecentEpisodes } from "../interfaces/recentEpisodes";
 import { Genre } from "../interfaces/shared/Genres";
 import { StateCreator } from 'zustand';
 
 export interface AnimeSliece {
-  topAnimeList: ItopAnimeArray;
+  topAnimeList: topAnimeArray;
   genresList: Genre[];
   recentEpisodesList: RecentEpisodes,
-  setAnimeList: (animeList: ItopAnimeArray) => void;
+  setAnimeList: (animeList: topAnimeArray) => void;
   setGenresList: (genresList: Genre[]) => void;
   setRecentEpisodesList: (recentEpisodes: RecentEpisodes) => void;
 }
 
-const useAnimeSlice: StateCreator<AnimeSliece> = (set) => ({
+const useAnimeSlice: StateCreator<AnimeSliece> = (set, get) => ({
   topAnimeList: [],
-  setAnimeList: (animeList) => set({ topAnimeList: animeList }),
-  genresList: [],
-  setGenresList: (genresList) => set({ genresList }),
   recentEpisodesList: [],
+  genresList: [],
+  setAnimeList: (animeList) => set({ topAnimeList: animeList }),
+  setGenresList: (genresList) => set({ genresList }),
   setRecentEpisodesList: (recentEpisodesList) => {
-    set({recentEpisodesList})
-  }
-}) 
+    set({ recentEpisodesList });
+  },
+})
 
 export default useAnimeSlice;
