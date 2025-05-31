@@ -23,39 +23,6 @@
 		flex: 0 0 84px;
 		transform: translateX(0%);
 		transition: all 0.5s ease-in-out;
-
-		// &:hover {
-		// 	position: relative;
-		// 	flex: 0 0 200px;
-		// }
-
-		// &.sideBarActive {
-		// 	.user__info {
-		// 		display: block;
-		// 		opacity: 1;
-		// 	}
-		// 	.menu__search-input {
-		// 		display: block;
-		// 	}
-		// 	.nav__link {
-		// 		display: flex;
-		// 	}
-		// 	.nav__item {
-		// 		justify-content: flex-end;
-		// 	}
-		// 	.menu__auth-container {
-		// 		justify-content: flex-start;
-		// 	}
-		// 	.menu__auth-text {
-		// 		display: block;
-		// 	}
-		// 	.theme {
-		// 		justify-content: flex-end;
-		// 	}
-		// 	.theme__text {
-		// 		display: block;
-		// 	}
-		// }
 	}
 
 	@include desktop {
@@ -157,7 +124,7 @@
 }
 .user {
 	background-color: $glass-background;
-	padding: 1rem 2rem;
+	padding: 1rem;
 	border-radius: 1rem;
 	display: flex;
 	align-items: center;
@@ -168,6 +135,10 @@
 	@include telefono {
 		width: 100%;
 		justify-content: flex-start;
+		padding: 1rem 2rem;
+	}
+	@include desktop {
+		padding: 1rem;
 	}
 	&__icon {
 		color: $accent-color;

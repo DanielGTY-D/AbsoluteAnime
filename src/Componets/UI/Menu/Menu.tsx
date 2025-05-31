@@ -42,15 +42,6 @@ const Menu = () => {
 						<i className="ri-home-5-line nav__icon"></i>
 					</NavLink>
 					<NavLink
-						to={"/capitulos-recientes"}
-						className={({ isActive }) =>
-							isActive ? "nav__item nav__item--active" : "nav__item"
-						}
-					>
-						<p className="nav__link">Capitulos Recientes</p>
-						<i className="ri-book-open-line nav__icon"></i>
-					</NavLink>
-					<NavLink
 						to={"/anime-destacado"}
 						className={({ isActive }) =>
 							isActive ? "nav__item nav__item--active" : "nav__item"

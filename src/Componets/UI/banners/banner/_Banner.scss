@@ -1,0 +1,28 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.banner {
+  width: 100%;
+  padding: 4rem 2rem 2rem 2rem;
+  position: relative;
+  height: 370px;
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+  &__content {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 45%;
+  }
+  &__content--left {
+    left: 7%;
+    width: 40%;
+  }
+  &__caption {
+    font-size: clamp(1rem, 1.8vw, 1.8rem);
+    color: $white;
+    text-align: right;
+  }
+}

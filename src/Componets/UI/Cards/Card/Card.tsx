@@ -1,40 +1,40 @@
+import "./_Card.scss";
 import { Link } from "react-router-dom";
 import { RecentEpisode } from "../../../../interfaces/recentEpisodes";
-import "./_Card.scss";
 
 
 interface CardProps {
-  data: RecentEpisode;
+  episodes: RecentEpisode;
 }
 
-const Card = ({ data }: CardProps) => {
+const Card = ({ episodes }: CardProps) => {
   return (
     <article className="card">
       <Link
-        to={`/anime?aniemId=${data.entry.mal_id}`}
+        to={`/anime?aniemId=${episodes.entry.mal_id}`}
         className="card__image-container"
       >
         <img
-          src={data.entry.images.webp.large_image_url}
-          alt={data.entry.title}
+          src={episodes.entry.images.webp.large_image_url}
+          alt={episodes.entry.title}
           loading="lazy"
           className="card__image"
         />
       </Link>
 
       <div className="card__content">
-        <h2 className="card__title">{data.entry.title}</h2>
+        <h2 className="card__title">{episodes.entry.title}</h2>
       </div>
 
       <div className="info-box">
-        <p>Recent episodes</p>
-        {data.episodes.map((episodesData) => (
+        <p>Recent episodess</p>
+        {episodes.episodes.map((episode) => (
           <Link
-            to={`/anime?animeId=${data.entry.mal_id}`}
+            to={`/anime?animeId=${episodes.entry.mal_id}`}
             className="info-box__text"
-            key={episodesData.mal_id}
+            key={episode.mal_id}
           >
-            {episodesData.title}
+            {episode.title}
           </Link>
         ))}
       </div>

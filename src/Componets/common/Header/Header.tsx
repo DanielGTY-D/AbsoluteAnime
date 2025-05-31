@@ -86,7 +86,7 @@ const Header = () => {
                       {anime.genres.map((genre) => (
                         <li className="genre-list__item" key={genre.mal_id}>
                           <Link
-                            to={`/anime-list?genre-id=${genre.mal_id}`}
+                            to={`/anime-list?genreId=${genre.mal_id}`}
                             className="genre-list__link"
                           >
                             {genre.name}
