@@ -1,15 +1,39 @@
 import "./_menu.scss";
 import "remixicon/fonts/remixicon.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../store/useAppStore";
+import { useState } from "react";
+import useAnime from "../../../hooks/useAnime";
+
+
 const Menu = () => {
-  const isMobileMenuOpen = useAppStore(state => state.isOpenMobileMenu);
-  const setIsMobileMenuOpen = useAppStore( state => state.setMobileMenu)
+	const isMobielMenuOpen = useAppStore((state) => state.isMobileMenuOpen);
+	const setIsMobielMenuOpen = useAppStore((state) => state.setIsMobileMenuOpen);
+	const genres = useAppStore((state) => state.genresList);
+	const { fetchAnimeGenres } = useAnime();
+	const [inputValue, setInputValue] = useState("");
+	const navigate = useNavigate();
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
+	};
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		if (!inputValue.length) return;
+
+		// setQuery("?q=" + inputValue);
+		setInputValue("");
+		navigate(`/anime-list?q=${inputValue}`);
+	};
+
+	const handleFilter = async () => {
+		await fetchAnimeGenres();
+	};
 
 	return (
-		<div
-			className={`menu ${isMobileMenuOpen ? "menu--open" : ""}`}
-		>
+		<div className={`menu ${isMobielMenuOpen ? "menu--open" : ""}`}>
 			<NavLink
 				to={"/profile"}
 				className={({ isActive }) => (isActive ? "user user--active" : "user")}
@@ -21,13 +45,39 @@ const Menu = () => {
 				</div>
 			</NavLink>
 
-			<form className="menu__search">
+			<form className="menu__search" onSubmit={handleSubmit}>
 				<i className="ri-search-line menu__search-icon"></i>
 				<input
 					type="search"
 					placeholder="Search..."
 					className="menu__search-input"
+					value={inputValue}
+					onChange={handleChange}
 				/>
+
+				<div className="filter" onClick={handleFilter}>
+					<i className="ri-filter-line filter__icon"></i>
+
+					<ul className="filter__opts">
+						{genres.length ? (
+							genres.map((genre) => (
+								<li className="filter__opt">
+									<input
+										className="filter__input"
+										type="checkbox"
+										name={genre.mal_id.toString()}
+										id={genre.mal_id.toString()}
+									/>
+									<label className="filter__text" htmlFor={genre.mal_id.toString()}>
+										{genre.name}
+									</label>
+								</li>
+							))
+						) : (
+							<></>
+						)}
+					</ul>
+				</div>
 			</form>
 
 			<nav className="nav nav--mobile">
@@ -80,9 +130,9 @@ const Menu = () => {
 					<p className="theme__text">theme mode</p>
 					<i className="ri-moon-line theme__icon"></i>
 				</div>
-        <div className="menu__close" onClick={setIsMobileMenuOpen}>
-          Close Menu
-        </div>
+				<div className="menu__close" onClick={() => setIsMobielMenuOpen(false)}>
+					Close Menu
+				</div>
 			</div>
 		</div>
 	);

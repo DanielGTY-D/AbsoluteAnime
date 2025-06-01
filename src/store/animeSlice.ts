@@ -12,7 +12,7 @@ export interface AnimeSliece {
   setRecentEpisodesList: (recentEpisodes: RecentEpisodes) => void;
 }
 
-const useAnimeSlice: StateCreator<AnimeSliece> = (set, get) => ({
+const useAnimeSlice: StateCreator<AnimeSliece> = (set) => ({
   topAnimeList: [],
   recentEpisodesList: [],
   genresList: [],

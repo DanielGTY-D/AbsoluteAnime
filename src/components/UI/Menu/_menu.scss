@@ -122,6 +122,42 @@
 		}
 	}
 }
+.filter {
+	position: relative;
+	&__icon {
+		color: $white;
+		font-size: 2rem;
+	}
+	&__opts {
+		height: 15rem;
+		width: 20rem;
+		position: absolute;
+		top: -1rem;
+		left: 5rem;
+		background-color: $background-color;
+		border-radius: 0.5rem;
+		overflow-y: auto;
+	}
+	&__opt {
+		height: fit-content;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+		padding: 0.6rem 1rem;
+	}
+	&__input[type="checkbox"] {
+		display: block;
+	}
+	&__text {
+		display: block;
+		text-wrap: nowrap;
+		width: fit-content;
+		height: fit-content;
+		color: $background-color-secondary;
+	}
+}
 .user {
 	background-color: $glass-background;
 	padding: 1rem;

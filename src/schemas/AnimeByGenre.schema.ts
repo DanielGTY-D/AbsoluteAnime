@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import { TopAnimeSchema } from './TopAnime.schema';
+import { AnimeSchema } from './Anime.schema';
 
-export const AnimeByGenreSchema = TopAnimeSchema.omit({episodes: true})
+export const AnimeByGenreSchema = AnimeSchema
 export const AnimeByGenreSchemaArray = z.array(AnimeByGenreSchema);

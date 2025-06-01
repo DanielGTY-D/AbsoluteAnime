@@ -4,7 +4,7 @@ import "swiper/swiper-bundle.css";
 import "./_Section.scss";
 import { RecentEpisodes } from "../../../../interfaces/recentEpisodes";
 import Card from "../../../UI/Cards/Card/Card";
-import LoaderSection from "../../../UI/Loader/LoaderSection/LoaderSection";
+import LoaderSection from "../../../UI/Loaders/LoaderSection/LoaderSection";
 import DropDownMenu from "../../../UI/DropDownMenu/DropDownMenu";
 
 interface SectionProps {
@@ -19,9 +19,8 @@ const Section = ({
 	recentEpisodesList = [],
 	options,
 }: SectionProps) => {
-
 	return (
-		<section className="section" >
+		<section className="section">
 			<div className="section__header">
 				<h2 className="section__title">{sectionName}</h2>
 
@@ -51,7 +50,7 @@ const Section = ({
 					>
 						{recentEpisodesList.map((episode) => (
 							<SwiperSlide className="section__swiper-item" key={episode.entry.mal_id}>
-								<Card episodes={episode}/>
+								<Card episodes={episode} />
 							</SwiperSlide>
 						))}
 					</Swiper>

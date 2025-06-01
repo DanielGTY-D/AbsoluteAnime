@@ -4,21 +4,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Bottleneck from "bottleneck";
 import "swiper/swiper-bundle.css";
 import "./_SectionTwo.scss";
-import CardTwo from "../../../UI/Cards/CardTwo/CardTwo";
-import LoaderSection from "../../../UI/Loader/LoaderSection/LoaderSection";
+import CardTwo from "../../../UI/Cards/card-two/CardTwo";
+import LoaderSection from "../../../UI/Loaders/LoaderSection/LoaderSection";
 import DropDownMenu from "../../../UI/DropDownMenu/DropDownMenu";
 import { AnimeByGenreArray } from "../../../../interfaces/AnimeByGenre";
-import useAnime from "../../../../hook/useAnime";
+import useAnime from "../../../../hooks/useAnime";
 
 interface SectionTwoProps {
 	sectionName: string;
 	options: boolean;
 	genreId?: number | null;
-  classPrev: string,
-  classNext: string,
+	classPrev: string;
+	classNext: string;
 }
 
-const SectionTwo = ({ sectionName, options, genreId = null, classNext, classPrev }: SectionTwoProps) => {
+const SectionTwo = ({
+	sectionName,
+	options,
+	genreId = null,
+	classNext,
+	classPrev,
+}: SectionTwoProps) => {
 	const [animeByGenre, setAnimeByGenre] = useState<AnimeByGenreArray>([]);
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const { fetchAnimeByGenre } = useAnime();
@@ -89,7 +95,7 @@ const SectionTwo = ({ sectionName, options, genreId = null, classNext, classPrev
 							</SwiperSlide>
 						))}
 					</Swiper>
-        <button className={`section__swiper-prev ${classPrev}`}>
+					<button className={`section__swiper-prev ${classPrev}`}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"

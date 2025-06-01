@@ -8,8 +8,8 @@ const TopAnimeSchema = z.object({
   title: z.string(),
   // title_english: z.string(),
   title_japanese: z.string(),
-  episodes: z.number(),
-  synopsis: z.string(),
+  episodes: z.number().nullable(),
+  synopsis: z.string().nullable(),
   genres: GenresSchema,
   images: ImageSchema,
 });

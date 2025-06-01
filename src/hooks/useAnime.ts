@@ -2,8 +2,10 @@ import instance from "../axios/index.ts";
 import { AnimeByGenreSchemaArray } from "../schemas/AnimeByGenre.schema.ts";
 import { RecentEpisodesSchema } from "../schemas/RecentEpisodes.schema.ts";
 import { GenresSchema } from "../schemas/shared/Genres.schema.ts";
-import { TopAnimeSchemaArray } from "../schemas/TopAnime.schema";
+import { TopAnimeSchemaArray } from "../schemas/TopAnime.schema.ts";
 import { useAppStore } from "../store/useAppStore.ts";
+import { AnimeSchemaWithPagination } from "../schemas/Anime.schema.ts";
+import { AnimeWithPagination } from "../interfaces/Anime.ts";
 
 const useAnime = () => {
 	const setTopAnimeList = useAppStore((state) => state.setAnimeList);
@@ -17,9 +19,9 @@ const useAnime = () => {
 
 			if (result.success) {
 				setTopAnimeList(result.data);
-			} else {
-				console.error(result.error);
+				return;
 			}
+			console.error("Error parsing top anime:", result.error);
 		} catch (err: unknown) {
 			if (err.response.status === 429) {
 				return new Promise((resolve) => {
@@ -29,7 +31,7 @@ const useAnime = () => {
 					}, 500);
 				});
 			}
-			console.error(err);
+			console.error("Error fetching top anime:", err);
 		}
 	};
 
@@ -39,9 +41,11 @@ const useAnime = () => {
 			const result = GenresSchema.safeParse(response.data.data);
 			if (result.success) {
 				setGenresList(result.data);
+				return;
 			}
+			console.error("Error parsing anime genres:", result.error);
 		} catch (err) {
-			console.error(err);
+			console.error("Error fetching anime genres:", err);
 		}
 	};
 
@@ -51,9 +55,11 @@ const useAnime = () => {
 			const result = RecentEpisodesSchema.safeParse(response.data.data);
 			if (result.success) {
 				setRecentEpisodes(result.data);
+				return;
 			}
+			console.error("Error parsing recent episodes:", result.error);
 		} catch (error) {
-			console.log(error);
+			console.error("Error fetching recent episodes:", error);
 		}
 	};
 
@@ -62,7 +68,12 @@ const useAnime = () => {
 		limit = 12
 	): Promise<unknown> => {
 		try {
-			const response = await instance.get(`anime?genres=${genre}&limit=${limit}`);
+			const response = await instance.get(`/anime`, {
+				params: {
+					genres: genre,
+					limit: limit,
+				},
+			});
 			// Manejo de error 429 desde la respuesta
 			if (response.status === 429) {
 				return new Promise((resolve) => {
@@ -76,6 +87,7 @@ const useAnime = () => {
 			if (result.success) {
 				return result.data;
 			}
+			console.error("Error parsing anime by genre:", result.error);
 		} catch (error: unknown) {
 			// Manejo de error 429 desde el catch
 			if (error.response.status === 429) {
@@ -86,8 +98,44 @@ const useAnime = () => {
 					}, 500);
 				});
 			}
-			throw new Error("Fallo al pedir animes por genero");
+			console.error("Error fetching anime by genre:", error);
 		}
+	};
+
+	const fetchAnime = async (
+		genre: number | number[] | null,
+		q: string,
+		currePage: number = 1
+	): Promise<AnimeWithPagination> => {
+		try {
+			const response = await instance.get(`/anime`, {
+				params: {
+					...(genre && { genres: genre }),
+					...(q && { q: q }),
+					...(currePage > 1 && { page: currePage }),
+					sfw: true,
+				},
+			});
+			const result = AnimeSchemaWithPagination.safeParse(response.data);
+			if (result.success) {
+				return result.data;
+			}
+
+			console.error(result.error);
+
+			// throw new Error("No se pudieron pedir los anime a traves del anime fetch")
+		} catch (error) {
+			console.error(error);
+			// throw new Error("Can't fetch anime data");
+		}
+		return {
+			data: [],
+			pagination: {
+				current_page: 0,
+				has_next_page: false,
+				last_visible_page: 0,
+			},
+		};
 	};
 
 	return {
@@ -95,6 +143,7 @@ const useAnime = () => {
 		fetchAnimeGenres,
 		fetchRecentEpisodes,
 		fetchAnimeByGenre,
+		fetchAnime,
 	};
 };
 
