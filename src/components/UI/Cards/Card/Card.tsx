@@ -30,7 +30,7 @@ const Card = ({ episodes }: CardProps) => {
         <p>Recent episodess</p>
         {episodes.episodes.map((episode) => (
           <Link
-            to={`/anime?animeId=${episodes.entry.mal_id}`}
+            to={`/anime?episodeId=${episodes.entry.mal_id}`}
             className="info-box__text"
             key={episode.mal_id}
           >

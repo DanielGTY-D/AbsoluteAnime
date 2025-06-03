@@ -30,7 +30,7 @@ const CardTwo = ({ data }: CardTwoProps) => {
 					{data.genres.map((genre) => (
 						<Link
 							key={genre.mal_id}
-							to={`/anime?animeId=${genre.mal_id}`}
+							to={`/anime-list?genreId=${genre.mal_id}`}
 							className="card-two__genre"
 							aria-label={`se more about ${genre.name}`}
 						>
