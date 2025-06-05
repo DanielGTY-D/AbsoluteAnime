@@ -2,7 +2,7 @@ import "./_menu.scss";
 import "remixicon/fonts/remixicon.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../store/useAppStore";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useAnime from "../../../hooks/useAnime";
 
 const Menu = () => {
@@ -22,10 +22,10 @@ const Menu = () => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
+		console.log("enviando formulario")
 		if (!inputValue.length) return;
 
-		// setQuery("?q=" + inputValue);
+		
 		setInputValue("");
 		navigate(`/anime-list?q=${inputValue}`);
 	};
@@ -50,9 +50,7 @@ const Menu = () => {
 		}
 	};
 
-	const handleFilters = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
+	const handleFilters = () => {
 		if (!filters.length) return;
 		navigate(`/anime-list?genresId=${filters}`);
 		setFilters([]);
@@ -141,6 +139,15 @@ const Menu = () => {
 						}
 					>
 						<p className="nav__link">Manga destacado</p>
+						<i className="ri-book-2-line nav__icon"></i>
+					</NavLink>
+					<NavLink
+						to={"/anime-list"}
+						className={({ isActive }) =>
+							isActive ? "nav__item nav__item--active" : "nav__item"
+						}
+					>
+						<p className="nav__link">Anime List</p>
 						<i className="ri-book-2-line nav__icon"></i>
 					</NavLink>
 					<NavLink

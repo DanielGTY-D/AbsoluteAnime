@@ -14,3 +14,50 @@
   padding: 2rem 2rem;
   gap: 2rem;
 }
+
+.pagination {
+  padding: 2rem 0;
+
+  margin: 0 auto;
+  z-index: 10;
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  &__pages-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    width: calc((39.19px + 0.5rem) * 4);
+  }
+  &__item {
+    font-family: $primary-font;
+    font-weight: 700;
+    background-color: $accent-color;
+    padding: 1rem 1.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__item--prev {
+    .pagination__dot {
+      font-size: 2rem;
+    }
+  }
+  &__item--next {
+    transform: translateX(0);
+    .pagination__dot {
+      font-size: 2rem;
+    }
+  }
+  &__dot {
+    color: $shade-color;
+  }
+}

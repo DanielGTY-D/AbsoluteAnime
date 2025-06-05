@@ -5,7 +5,7 @@ import useAnime from "../hooks/useAnime.ts";
 import { delay } from "../utils/index.ts";
 import { useAppStore } from "../store/useAppStore.ts";
 import SectionTwo from "../components/common/sections/SectionTwo/SectionTwo.tsx";
-import Banner from "../components/UI/banners/banner/banner.tsx";
+import Banner from "../components/UI/banners/banner/Banner.tsx";
 const Home = () => {
 	const { fetchTopAnime, fetchRecentEpisodes } = useAnime();
 	const recentEpisodesList = useAppStore((state) => state.recentEpisodesList);

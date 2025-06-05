@@ -1,5 +1,6 @@
 import "./_CardTree.scss";
 import { Anime } from "../../../../interfaces/Anime";
+import { Link } from "react-router-dom";
 
 interface CardTreeProps {
   data: Anime
@@ -7,7 +8,8 @@ interface CardTreeProps {
 
 const CardTree = ({data} : CardTreeProps) => {
   return (
-    <article className="card-tree">
+    <Link to={`/anime?animeId=${data.mal_id}`} className="card-tree__link">
+      <article className="card-tree">
       <div className="card-tree__img-container">
         <img className="card-tree__img" src={data.images.webp.large_image_url} alt={data.title} loading="lazy"/>
       </div>
@@ -22,6 +24,7 @@ const CardTree = ({data} : CardTreeProps) => {
         </div>
       </div>
     </article>
+    </Link>
   );
 };
 

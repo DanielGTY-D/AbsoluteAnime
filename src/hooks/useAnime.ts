@@ -21,9 +21,9 @@ const useAnime = () => {
 				setTopAnimeList(result.data);
 				return;
 			}
-			console.error("Error parsing top anime:", result.error);
+			
 		} catch (err: unknown) {
-			if (err.response.status === 429) {
+			if (err.response.status === 429 || err.status === 429) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						const data = fetchTopAnime();
@@ -90,7 +90,10 @@ const useAnime = () => {
 			console.error("Error parsing anime by genre:", result.error);
 		} catch (error: unknown) {
 			// Manejo de error 429 desde el catch
-			if (error.response.status === 429) {
+			if (
+				typeof error === "object" &&
+				error !== null && error.status === 429
+			) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						const data = fetchAnimeByGenre(genre);
@@ -103,14 +106,14 @@ const useAnime = () => {
 	};
 
 	const fetchAnime = async (
-		genre: number | number[] | null,
-		q: string,
+		genre?: number | number[] | null,
+		q?: string,
 		currePage: number = 1
 	): Promise<AnimeWithPagination> => {
 		try {
 			const response = await instance.get(`/anime`, {
 				params: {
-					...(genre && { genres: genre }),
+					...(genre && { genres: Array.isArray(genre) ? genre.join(",") : genre }),
 					...(q && { q: q }),
 					...(currePage > 1 && { page: currePage }),
 					sfw: true,
@@ -138,12 +141,39 @@ const useAnime = () => {
 		};
 	};
 
+	const fetchAnimeById = async (id: number): Promise<AnimeWithPagination> => {
+		try {
+			const response = await instance.get(`/anime/`, {
+				params: {
+					id
+				}
+			});
+			const result = AnimeSchemaWithPagination.safeParse(response.data);
+			if (result.success) {
+				return result.data;
+			}
+
+			console.error("Error parsing anime by ID:", result.error);
+		} catch (error) {
+			console.error("Error fetching anime by ID:", error);
+		}
+		return {
+			data: [],
+			pagination: {
+				current_page: 0,
+				has_next_page: false,
+				last_visible_page: 0,
+			},
+		};
+	}
+
 	return {
 		fetchTopAnime,
 		fetchAnimeGenres,
 		fetchRecentEpisodes,
 		fetchAnimeByGenre,
 		fetchAnime,
+		fetchAnimeById,
 	};
 };
 
