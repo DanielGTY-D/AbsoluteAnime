@@ -3,10 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SearchAnimeArray, SearchAnimeWithPagination } from "../interfaces/SearchAnime";
 import useAnime from "../hooks/useAnime";
 import CardTree from "../components/UI/Cards/Card-tree/CardTree";
-import "../components/UI/Cards/Card-tree/_CardTree.skeleton.scss";
 import LoaderAnimeList from "../components/UI/Loaders/anime-list-loader/LoaderAnimeList";
 import "remixicon/fonts/remixicon.css";
-import { chdir } from "process";
+
 
 const AnimeList = () => {
 	const [dataAnime, setDataAnime] = useState<SearchAnimeArray>([]);
@@ -46,7 +45,7 @@ const AnimeList = () => {
 		);
 		setDataAnime(response?.data ?? []);
 		setPagination(response.pagination);
-		setPagesArray(response.pagination.last_visible_page);
+		setPagesArray(response.pagination.last_visible_page ? response.pagination.last_visible_page : 1);
 
 		if (response?.data.length === 0) {
 			navigate("/not-found");
@@ -95,7 +94,7 @@ const AnimeList = () => {
 	};
 
 	useEffect(() => {
-		getData();
+		getData(1);
 	}, [genre, q, genres]);
 	return (
 		<main className="main-content contenedor">
@@ -114,7 +113,7 @@ const AnimeList = () => {
 			)}
 
 			<div className="pagination" onClick={handlePagination}>
-				{pagination!.last_visible_page >= 2 ? (
+				{pagination ? (
 					<ul className="pagination__wrapper">
 						<li className="pagination__item pagination__item--prev" ref={prev}>
 							<Link className="pagination__dot" to={`/anime-list?${""}`}>
