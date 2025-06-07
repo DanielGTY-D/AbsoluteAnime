@@ -4,8 +4,13 @@ import { RecentEpisodesSchema } from "../schemas/RecentEpisodes.schema.ts";
 import { GenresSchema } from "../schemas/shared/Genres.schema.ts";
 import { TopAnimeSchemaArray } from "../schemas/TopAnime.schema.ts";
 import { useAppStore } from "../store/useAppStore.ts";
-import { AnimeSchemaWithPagination } from "../schemas/Anime.schema.ts";
-import { AnimeWithPagination } from "../interfaces/Anime.ts";
+import {
+	SearchAnimeSchema,
+	SearchAnimeSchemaWithPagination,
+} from "../schemas/SearchAnime.schema.ts";
+import { AnimeWithPagination } from "../interfaces/SearchAnime.ts";
+import { EpisodeSchemaArray } from "../schemas/Episodes.schema.ts";
+import { data } from 'react-router-dom';
 
 const useAnime = () => {
 	const setTopAnimeList = useAppStore((state) => state.setAnimeList);
@@ -21,7 +26,6 @@ const useAnime = () => {
 				setTopAnimeList(result.data);
 				return;
 			}
-			
 		} catch (err: unknown) {
 			if (err.response.status === 429 || err.status === 429) {
 				return new Promise((resolve) => {
@@ -90,10 +94,7 @@ const useAnime = () => {
 			console.error("Error parsing anime by genre:", result.error);
 		} catch (error: unknown) {
 			// Manejo de error 429 desde el catch
-			if (
-				typeof error === "object" &&
-				error !== null && error.status === 429
-			) {
+			if (typeof error === "object" && error !== null && error.status === 429) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						const data = fetchAnimeByGenre(genre);
@@ -119,7 +120,7 @@ const useAnime = () => {
 					sfw: true,
 				},
 			});
-			const result = AnimeSchemaWithPagination.safeParse(response.data);
+			const result = SearchAnimeSchemaWithPagination.safeParse(response.data);
 			if (result.success) {
 				return result.data;
 			}
@@ -143,12 +144,8 @@ const useAnime = () => {
 
 	const fetchAnimeById = async (id: number): Promise<AnimeWithPagination> => {
 		try {
-			const response = await instance.get(`/anime/`, {
-				params: {
-					id
-				}
-			});
-			const result = AnimeSchemaWithPagination.safeParse(response.data);
+			const response = await instance.get(`/anime/${id}`);
+			const result = SearchAnimeSchema.safeParse(response.data.data);
 			if (result.success) {
 				return result.data;
 			}
@@ -165,7 +162,21 @@ const useAnime = () => {
 				last_visible_page: 0,
 			},
 		};
-	}
+	};
+
+	const fetchEpisodesByAnime = async (id: string) => {
+		try {
+			const response = await instance.get(`/anime/${id}/episodes`);
+			const result = EpisodeSchemaArray.safeParse(response.data.data);
+
+			if (result.success) {
+				return result.data;
+			}
+			console.log(result.error);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return {
 		fetchTopAnime,
@@ -174,6 +185,7 @@ const useAnime = () => {
 		fetchAnimeByGenre,
 		fetchAnime,
 		fetchAnimeById,
+		fetchEpisodesByAnime,
 	};
 };
 

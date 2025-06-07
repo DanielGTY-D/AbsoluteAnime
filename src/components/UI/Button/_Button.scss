@@ -1,0 +1,20 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.button {
+	padding: 0.5rem 1rem;
+	color: $white;
+	background-image: linear-gradient(
+		to right,
+		transparent 0%,
+		darken($accent-color, 20%) 60%
+	);
+	background-size: 400% 400%;
+	background-position: 0 0;
+  transition: background-position 0.7s ease-in-out;
+	cursor: pointer;
+
+	&:hover {
+		background-position: -50%;
+	}
+}

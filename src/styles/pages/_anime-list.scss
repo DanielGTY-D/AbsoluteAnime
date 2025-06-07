@@ -23,7 +23,7 @@
   &__wrapper {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     width: 100%;
   }
   &__pages-wrapper {
@@ -31,7 +31,9 @@
     align-items: center;
     gap: 0.5rem;
     overflow: hidden;
-    width: calc((39.19px + 0.5rem) * 4);
+    width: calc((50.19px + 0.5rem) * 4);
+    overflow: hidden;
+    transform: translateX();
   }
   &__item {
     font-family: $primary-font;
@@ -45,6 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.5s ease-in-out;
   }
   &__item--prev {
     .pagination__dot {

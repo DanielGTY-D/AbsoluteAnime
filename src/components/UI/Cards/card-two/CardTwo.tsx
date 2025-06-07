@@ -48,7 +48,7 @@ const CardTwo = ({ data }: CardTwoProps) => {
 				</div>
 
 				<Link
-					to={`/anime?animeId${data.mal_id}`}
+					to={`/anime?animeId=${data.mal_id}`}
 					type="button"
 					className="card-two__button"
 				>
