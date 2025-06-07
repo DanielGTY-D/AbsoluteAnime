@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAnime from "../hooks/useAnime";
 import { SearchAnime } from "../interfaces/SearchAnime";
 import { EpisodeArray } from "../interfaces/Episodes";
 import Button from "../components/UI/Button/Button";
+import Youtube from "react-youtube";
+
 
 const Anime = () => {
   const [anime, setAnime] = useState<SearchAnime>();
   const [episodes, setEpisodes] = useState<EpisodeArray>();
   const { fetchAnimeById, fetchEpisodesByAnime } = useAnime();
+  const [trailerId, setTrailerId] = useState("");
+  const videoRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,6 +26,7 @@ const Anime = () => {
       setAnime(animeResponse);
       const episodesResponse = await fetchEpisodesByAnime(animeId);
       setEpisodes(episodesResponse);
+
 
       if (!animeResponse?.data.length) navigate("/not-found");
     } catch (error) {
@@ -40,6 +45,21 @@ const Anime = () => {
     return formatedDate.replace("/", "de");
   }
 
+  const moveScrollToVideo = () => {
+    getTrailerId()
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 1000);
+  }
+
+  const getTrailerId = () => {
+    const idVideo = anime!.trailer.url!.split("=")[1];
+    setTrailerId(idVideo)
+  }
+
+
   useEffect(() => {
     getData();
   }, [animeId])
@@ -50,12 +70,12 @@ const Anime = () => {
           <img className="header__img" src={anime?.images.webp.large_image_url} alt={anime?.title} />
 
           <div className="header__content">
-            <p className="header__description">{anime?.synopsis}</p>
+            <p className="header__description">Description: <span>{anime?.synopsis}</span></p>
 
             <div className="header__tools">
-              <Button text="See Trailer" type="1"/>
+              <Button text="See Trailer" type="1" action={moveScrollToVideo} />
 
-              <Button text="add to favorites" type="1"/>
+              <Button text="add to favorites" type="1" />
             </div>
           </div>
         </header>
@@ -64,15 +84,34 @@ const Anime = () => {
           <h3>Episodes</h3>
           <ul className="episodes">
             {
-              episodes?.map( episode => (
+              episodes?.map(episode => (
                 <li key={episode.mal_id} className="episodes__item">
-                  <p>{episode.title} - <span>{dateFromater(episode.aired)}</span></p>
+                  <p>{episode.title} </p>
+                  <span>{dateFromater(episode.aired)}</span>
                 </li>
               ))
             }
           </ul>
         </main>
       </div>
+
+      {
+        trailerId.length ? (
+          <div className="trailer" ref={videoRef}>
+            <Youtube
+              videoId={trailerId}
+              opts={{
+                height: "390",
+                widht: "640",
+                playersVars: {
+                  Autoplay: 1
+                }
+              }}
+              onReady={event => event.target.pauseVideo()}
+            />
+          </div>
+        ) : (<></>)
+      }
     </main>
   );
 };

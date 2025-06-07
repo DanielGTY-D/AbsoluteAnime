@@ -16,7 +16,17 @@
 			color: $white;
 			line-height: 1.5;
 			letter-spacing: 0.05rem;
-			font-size: 1.4rem;
+			font-size: 1.8rem;
+			height: 20rem;
+			overflow-x: auto;
+
+			&::-webkit-scrollbar {
+				width: 0.5rem;
+			}
+
+			span {
+				font-size: 1.4rem;
+			}
 		}
 		&__tools {
 			display: flex;
@@ -24,7 +34,7 @@
 		}
 	}
 	&__info {
-		padding: 0 2rem;
+		padding: 6rem 2rem;
 
 		> h3 {
 			color: $white;
@@ -47,10 +57,31 @@
 	gap: 1rem;
 
 	&__item {
+		background-color: $background-color-secondary;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
 		display: flex;
-    justify-content: space-between;
+		justify-content: space-between;
 		p {
 			color: $white;
+			color: $shade-color;
+			width: 40rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
+
+		span {
+			width: fit-content !important;
+		}
+	}
+}
+
+.trailer {
+	width: 100%;
+	padding: 0 2rem;
+
+	iframe {
+		width: 100%;
 	}
 }
