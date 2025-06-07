@@ -45,7 +45,7 @@ const AnimeList = () => {
 		);
 		setDataAnime(response?.data ?? []);
 		setPagination(response.pagination);
-		setPagesArray(response.pagination.last_visible_page);
+		setPagesArray(response.pagination.last_visible_page ? response.pagination.last_visible_page : 1);
 
 		if (response?.data.length === 0) {
 			navigate("/not-found");

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/main.scss";
 import Home from "./views/Home";
 import LayoutInicio from "./layout/LayoutInicio";
-import Anime from "./views/anime";
+import Anime from "./views/Anime";
 import Episode from "./views/episode";
 import AnimeList from "./views/AnimeList";
 import NotFound from "./views/NotFound";
