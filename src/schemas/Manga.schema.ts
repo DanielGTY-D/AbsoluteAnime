@@ -5,11 +5,11 @@ import ImageSchema from './shared/Image.schema';
 export const MangaSchema = z.object({
   mal_id: z.number(),
   images: ImageSchema,
-  title: z.string(),
+  title: z.string().nullable(),
   chapters: z.number().nullable(),
-  status: z.string(),
-  score: z.number(),
-  synopsis: z.string(),
+  status: z.string().nullable(),
+  score: z.number().nullable(),
+  synopsis: z.string().nullable(),
 })
 
 export const MangasSchema = z.array(MangaSchema)

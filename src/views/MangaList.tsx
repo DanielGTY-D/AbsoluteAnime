@@ -123,7 +123,7 @@ const MangaList = () => {
 							)}
 						</div>
 						<li className="pagination__item pagination__item--next" ref={next}>
-							<Link className="pagination__dot" to={`/anime-list?${""}`}>
+							<Link className="pagination__dot" to={`/manga-list?${""}`}>
 								<i className="ri-arrow-right-s-line"></i>
 							</Link>
 						</li>

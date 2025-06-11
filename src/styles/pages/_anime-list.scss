@@ -47,7 +47,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.7s ease-in-out;
+    animation-delay: 0;
   }
   &__item--prev {
     .pagination__dot {
