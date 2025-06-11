@@ -3,9 +3,9 @@ import "./styles/main.scss";
 import Home from "./views/Home";
 import LayoutInicio from "./layout/LayoutInicio";
 import Anime from "./views/Anime";
-import Episode from "./views/episode";
 import AnimeList from "./views/AnimeList";
 import NotFound from "./views/NotFound";
+import MangaList from "./views/MangaList";
 
 function AppRouter() {
   return (
@@ -15,7 +15,7 @@ function AppRouter() {
           <Route index element={<Home />} />
           <Route path="anime-list" element={<AnimeList/>}/>
           <Route path="anime" element={<Anime />} />
-          <Route path="episode" element={<Episode />} />
+          <Route path="manga-list" element={<MangaList />} />
           <Route path="not-found" element={<NotFound />} />
         </Route>
       </Routes>

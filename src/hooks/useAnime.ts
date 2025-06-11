@@ -8,9 +8,8 @@ import {
 	SearchAnimeSchema,
 	SearchAnimeSchemaWithPagination,
 } from "../schemas/SearchAnime.schema.ts";
-import { AnimeWithPagination } from "../interfaces/SearchAnime.ts";
 import { EpisodeSchemaArray } from "../schemas/Episodes.schema.ts";
-import { data } from 'react-router-dom';
+import { SearchAnime, SearchAnimeWithPagination } from "../interfaces/SearchAnime.ts";
 
 const useAnime = () => {
 	const setTopAnimeList = useAppStore((state) => state.setAnimeList);
@@ -20,14 +19,25 @@ const useAnime = () => {
 	const fetchTopAnime = async () => {
 		try {
 			const response = await instance.get("/top/anime");
-			const result = TopAnimeSchemaArray.safeParse(response.data.data);
 
-			if (result.success) {
-				setTopAnimeList(result.data);
+			if (response.status === 200) {
+				const result = TopAnimeSchemaArray.safeParse(response.data.data);
+
+				if (result.success) {
+					setTopAnimeList(result.data);
+					return;
+				}
+				console.error("error parsing fetch data", result.error);
 				return;
 			}
+			console.log("Error meanwhile fetching data of top anime");
 		} catch (err: unknown) {
-			if (err.response.status === 429 || err.status === 429) {
+			if (
+				typeof err === "object" &&
+				err !== null &&
+				"status" in err &&
+				(err as { status?: number }).status === 429
+			) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						const data = fetchTopAnime();
@@ -42,12 +52,16 @@ const useAnime = () => {
 	const fetchAnimeGenres = async () => {
 		try {
 			const response = await instance.get("/genres/anime?sfw-true");
-			const result = GenresSchema.safeParse(response.data.data);
-			if (result.success) {
-				setGenresList(result.data);
+			if (response.status === 200) {
+				const result = GenresSchema.safeParse(response.data.data);
+				if (result.success) {
+					setGenresList(result.data);
+					return;
+				}
+				console.error("Error parsing anime genres:", result.error);
 				return;
 			}
-			console.error("Error parsing anime genres:", result.error);
+			console.error("Error meanwhile fetching anime genres");
 		} catch (err) {
 			console.error("Error fetching anime genres:", err);
 		}
@@ -56,12 +70,16 @@ const useAnime = () => {
 	const fetchRecentEpisodes = async () => {
 		try {
 			const response = await instance.get("/watch/episodes");
-			const result = RecentEpisodesSchema.safeParse(response.data.data);
-			if (result.success) {
-				setRecentEpisodes(result.data);
+			if (response.status === 200) {
+				const result = RecentEpisodesSchema.safeParse(response.data.data);
+				if (result.success) {
+					setRecentEpisodes(result.data);
+					return;
+				}
+				console.error("cannot parse data of recent episodes", result.error);
 				return;
 			}
-			console.error("Error parsing recent episodes:", result.error);
+			console.error("Error meanwhile fetching data");
 		} catch (error) {
 			console.error("Error fetching recent episodes:", error);
 		}
@@ -87,14 +105,23 @@ const useAnime = () => {
 					}, 500);
 				});
 			}
-			const result = AnimeByGenreSchemaArray.safeParse(response.data.data);
-			if (result.success) {
-				return result.data;
+			if (response.status === 200) {
+				const result = AnimeByGenreSchemaArray.safeParse(response.data.data);
+				if (result.success) {
+					return result.data;
+				}
+				console.error("Error parsing anime by genre:", result.error);
+				return;
 			}
-			console.error("Error parsing anime by genre:", result.error);
+			console.error("Error meanwhile fetching data of anime by genre");
 		} catch (error: unknown) {
 			// Manejo de error 429 desde el catch
-			if (typeof error === "object" && error !== null && error.status === 429) {
+			if (
+				typeof error === "object" &&
+				error !== null &&
+				"status" in error &&
+				(error as { status?: number }).status === 429
+			) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						const data = fetchAnimeByGenre(genre);
@@ -110,7 +137,7 @@ const useAnime = () => {
 		genre?: number | number[] | null,
 		q?: string,
 		currePage: number = 1
-	): Promise<AnimeWithPagination> => {
+	): Promise<SearchAnimeWithPagination> => {
 		try {
 			const response = await instance.get(`/anime`, {
 				params: {
@@ -120,13 +147,17 @@ const useAnime = () => {
 					sfw: true,
 				},
 			});
-			const result = SearchAnimeSchemaWithPagination.safeParse(response.data);
-			if (result.success) {
-				return result.data;
+
+			if (response.status === 200) {
+				const result = SearchAnimeSchemaWithPagination.safeParse(response.data);
+				if (result.success) {
+					return result.data;
+				}
+
+				console.error(result.error);
+				return {} as SearchAnimeWithPagination
 			}
-
-			console.error(result.error);
-
+			console.error("error meanwhile fetching data");
 			// throw new Error("No se pudieron pedir los anime a traves del anime fetch")
 		} catch (error) {
 			console.error(error);
@@ -142,37 +173,41 @@ const useAnime = () => {
 		};
 	};
 
-	const fetchAnimeById = async (id: number): Promise<AnimeWithPagination> => {
+	const fetchAnimeById = async (id: number): Promise<SearchAnime> => {
 		try {
 			const response = await instance.get(`/anime/${id}`);
-			const result = SearchAnimeSchema.safeParse(response.data.data);
-			if (result.success) {
-				return result.data;
+			if (response.status === 200) {
+				const result = SearchAnimeSchema.safeParse(response.data.data);
+				if (result.success) {
+					return result!.data;
+				}
+
+				console.error("Error parsing anime by ID:", result.error);
+				return {} as SearchAnime
 			}
 
-			console.error("Error parsing anime by ID:", result.error);
+			console.error("Error meanwhile fetching data of anime by id");
 		} catch (error) {
 			console.error("Error fetching anime by ID:", error);
 		}
-		return {
-			data: [],
-			pagination: {
-				current_page: 0,
-				has_next_page: false,
-				last_visible_page: 0,
-			},
-		};
+
+		return {} as SearchAnime
 	};
 
 	const fetchEpisodesByAnime = async (id: string) => {
 		try {
 			const response = await instance.get(`/anime/${id}/episodes`);
-			const result = EpisodeSchemaArray.safeParse(response.data.data);
 
-			if (result.success) {
-				return result.data;
+			if (response.status === 200) {
+				const result = EpisodeSchemaArray.safeParse(response.data.data);
+				if (result.success) {
+					return result.data;
+				}
+				console.log(result.error);
+				return;
 			}
-			console.log(result.error);
+
+			console.error("Error meanwhile fetching data of Episodes by anime");
 		} catch (error) {
 			console.log(error);
 		}

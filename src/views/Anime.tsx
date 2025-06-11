@@ -51,7 +51,7 @@ const Anime = () => {
       if (videoRef.current) {
         videoRef.current?.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 1000);
+    }, 500);
   }
 
   const getTrailerId = () => {

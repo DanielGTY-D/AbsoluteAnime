@@ -11,7 +11,7 @@ const Card = ({ episodes }: CardProps) => {
   return (
     <article className="card">
       <Link
-        to={`/anime?aniemId=${episodes.entry.mal_id}`}
+        to={`/anime?animeId=${episodes.entry.mal_id}`}
         className="card__image-container"
       >
         <img

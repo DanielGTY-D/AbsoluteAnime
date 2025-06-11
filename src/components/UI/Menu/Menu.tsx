@@ -123,7 +123,7 @@ const Menu = () => {
 						<p className="nav__link">Home</p>
 						<i className="ri-home-5-line nav__icon"></i>
 					</NavLink>
-					<NavLink
+					{/* <NavLink
 						to={"/anime-destacado"}
 						className={({ isActive }) =>
 							isActive ? "nav__item nav__item--active" : "nav__item"
@@ -131,14 +131,14 @@ const Menu = () => {
 					>
 						<p className="nav__link">Anime destacado</p>
 						<i className="ri-book-open-line nav__icon"></i>
-					</NavLink>
+					</NavLink> */}
 					<NavLink
-						to={"/manga-destacado"}
+						to={"/manga-list"}
 						className={({ isActive }) =>
 							isActive ? "nav__item nav__item--active" : "nav__item"
 						}
 					>
-						<p className="nav__link">Manga destacado</p>
+						<p className="nav__link">Manga</p>
 						<i className="ri-book-2-line nav__icon"></i>
 					</NavLink>
 					<NavLink
@@ -150,7 +150,7 @@ const Menu = () => {
 						<p className="nav__link">Anime List</p>
 						<i className="ri-book-2-line nav__icon"></i>
 					</NavLink>
-					<NavLink
+					{/* <NavLink
 						to={"/generos"}
 						className={({ isActive }) =>
 							isActive ? "nav__item nav__item--active" : "nav__item"
@@ -158,7 +158,7 @@ const Menu = () => {
 					>
 						<p className="nav__link">Generos</p>
 						<i className="ri-book-2-line nav__icon"></i>
-					</NavLink>
+					</NavLink> */}
 				</ul>
 			</nav>
 
