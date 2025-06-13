@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useManga from "../hooks/useManga";
 import LoaderAnimeList from "../components/UI/Loaders/anime-list-loader/LoaderAnimeList";
-import CardTree from "../components/UI/Cards/Card-tree/CardTree";
 import {Mangas, MangasWithPagination } from "../interfaces/Manga";
 import CardManga from "../components/UI/Cards/card-manga/CardManga";
 
