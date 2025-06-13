@@ -5,6 +5,7 @@ import { SearchAnime } from "../interfaces/SearchAnime";
 import { EpisodeArray } from "../interfaces/Episodes";
 import Button from "../components/UI/Button/Button";
 import Youtube from "react-youtube";
+import ReactPlayer from "react-player";
 
 
 const Anime = () => {
@@ -112,6 +113,14 @@ const Anime = () => {
           </div>
         ) : (<></>)
       }
+
+      <ReactPlayer 
+        url={"https://hianimez.to/watch/naruto-shippuden-355?ep=7882"}
+        controls
+        height={200}
+        width={200}
+        volume={20}
+      />
     </main>
   );
 };
