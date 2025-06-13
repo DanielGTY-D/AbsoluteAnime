@@ -4,6 +4,7 @@ import useManga from "../hooks/useManga";
 import LoaderAnimeList from "../components/UI/Loaders/anime-list-loader/LoaderAnimeList";
 import CardTree from "../components/UI/Cards/Card-tree/CardTree";
 import {Mangas, MangasWithPagination } from "../interfaces/Manga";
+import CardManga from "../components/UI/Cards/card-manga/CardManga";
 
 const MangaList = () => {
     const [dataAnime, setDataAnime] = useState<Mangas>([]);
@@ -92,7 +93,7 @@ const MangaList = () => {
 
 					{dataAnime.map((anime) => (
 						<li key={anime.mal_id}>
-							<CardTree data={anime} />
+							<CardManga data={anime} />
 						</li>
 					))}
 				</ul>
