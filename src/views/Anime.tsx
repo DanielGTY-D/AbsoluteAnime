@@ -25,7 +25,7 @@ const Anime = () => {
 
       const animeResponse = await fetchAnimeById(parseInt(animeId));
       setAnime(animeResponse);
-      const episodesResponse = await fetchEpisodesByAnime(animeId);
+      const episodesResponse = await fetchEpisodesByAnime(animeId); 
       setEpisodes(episodesResponse);
 
 
@@ -88,7 +88,7 @@ const Anime = () => {
               episodes?.map(episode => (
                 <li key={episode.mal_id} className="episodes__item">
                   <p>{episode.title} </p>
-                  <span>{dateFromater(episode.aired)}</span>
+                  <span>{episode.aired ? dateFromater(episode.aired) : "Unknown date"}</span>
                 </li>
               ))
             }
