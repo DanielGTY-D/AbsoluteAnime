@@ -1,9 +1,9 @@
 import "./_CardTree.scss";
-import { Anime } from "../../../../interfaces/SearchAnime";
+import { SearchAnime } from "../../../../interfaces/SearchAnime";
 import { Link } from "react-router-dom";
 
 interface CardTreeProps {
-  data: Anime
+  data: SearchAnime
 }
 
 const CardTree = ({ data }: CardTreeProps) => {

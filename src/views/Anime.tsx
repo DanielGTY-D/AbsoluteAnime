@@ -29,7 +29,7 @@ const Anime = () => {
       setEpisodes(episodesResponse);
 
 
-      if (!animeResponse?.data.length) navigate("/not-found");
+      if (!Object.values(animeResponse).length) navigate("/not-found");
     } catch (error) {
       console.log("Error fetching anime data:", error);
     }
